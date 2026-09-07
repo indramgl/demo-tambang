@@ -41,12 +41,11 @@
 - **Backup:** None (demo only)
 - **Monitoring:** None (demo only)
 
-## Bilingual MVP (Ide #3)
-- **Languages first:** ID + EN only
-- **URL routing:** `/id/`, `/en/` — root `/` redirects to `/id/`
-- **URL display:** always show `/id/` or `/en/`
-- **Language switch:** flag icon
-- **Other languages:** added in final version when content ready
+## Translation JSON+Template (Ide #4)
+- **Structure:** `app/Views/lang/{halaman}.{bahasa}.json`
+- **Format:** Flat key-value
+- **Fallback:** Missing key → Indonesian
+- **Template:** 1 view template per halaman, JSON drives content
 - **Structure:** `app/Views/pages/{halaman}/{bahasa}.md`
 - **Source:** Markdown per halaman (Indonesian as primary)
 - **Translation:** AI (ling-3.0-flash-sante) → langsung publish, no review
