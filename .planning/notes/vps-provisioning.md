@@ -41,7 +41,9 @@
 - **Backup:** None (demo only)
 - **Monitoring:** None (demo only)
 
-## Notes
-- OpenLitespeed max connections calculation: adjust based on 2 vCPU/4GB resources
-- Postmark integration: add `wildbit/postmark-php` via Composer
-- Deploy script: git pull + Composer install + permissions
+## Static Content Workflow (Ide #2)
+- **Structure:** `app/Views/pages/{halaman}/{bahasa}.md`
+- **Source:** Markdown per halaman (Indonesian as primary)
+- **Translation:** AI (ling-3.0-flash-sante) → langsung publish, no review
+- **Rendering:** CI4 view sebagai template standar, controller baca markdown → HTML via Parsedown/CommonMark
+- **Files:** 6 halaman × 1 markdown + 1 view template per bahasa
