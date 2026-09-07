@@ -41,7 +41,12 @@
 - **Backup:** None (demo only)
 - **Monitoring:** None (demo only)
 
-## Static Content Workflow (Ide #2)
+## Bilingual MVP (Ide #3)
+- **Languages first:** ID + EN only
+- **URL routing:** `/id/`, `/en/` — root `/` redirects to `/id/`
+- **URL display:** always show `/id/` or `/en/`
+- **Language switch:** flag icon
+- **Other languages:** added in final version when content ready
 - **Structure:** `app/Views/pages/{halaman}/{bahasa}.md`
 - **Source:** Markdown per halaman (Indonesian as primary)
 - **Translation:** AI (ling-3.0-flash-sante) → langsung publish, no review
