@@ -1,51 +1,90 @@
 # Architecture — Research
 
 **Researched:** 2026-09-07
-**Phase goal:** N/A — no ROADMAP.md found in workspace
+**Updated:** 2026-09-07 (post new-project ceremony + ideation)
 
-## Current State: Empty Repository
+## Current State
+The repository at `C:\Coding\perusahaan-tambang` is a **pre-scaffold project** with planning artifacts only. No source code exists yet.
 
-The repository at `C:\Coding\perusahaan-tambang` has **no source code whatsoever**.
-
-- Git branch `master` has **zero commits** (`git log` returns nothing).
-- The only directories are `.git/` (git internals) and `.planning/` (planning folder).
-- `.planning/codebase/` exists but is empty.
-- No `package.json`, `tsconfig.json`, `Cargo.toml`, `go.mod`, `requirements.txt`, `docker-compose.yml`, or any project configuration file exists.
-- No source files (`.ts`, `.js`, `.py`, `.rs`, `.go`, `.java`, `.cs`, `.rb`, `.php`, `.vue`, `.svelte`, `.css`, `.html`, etc.) were found anywhere in the tree.
+- Git branch `master` with 8+ commits (all planning docs)
+- `.planning/codebase/` exists with 7 research docs
+- `.planning/phases/phase-0-setup/` exists (pause-work handoff)
+- `.planning/notes/vps-provisioning.md` contains VPS specs
+- Remote: `https://github.com/indramgl/demo-tambang.git`
 
 ## Architecture Pattern
+**Traditional PHP Monolith on VPS** — single-server deployment with OpenLitespeed + PHP-FPM.
 
-**None determined.** No application code exists to classify as monolith, microservices, serverless, or any other pattern.
+Not serverless, not microservices, not SPA.
 
 ## Layers
-
-**None found.** No API routes, services, data access layer, UI components, or shared utilities exist.
+```
+┌─────────────────────────────┐
+│  CDN / Static Cache        │
+│  (OpenLitespeed page cache) │
+├─────────────────────────────┤
+│  OpenLitespeed + PHP-FPM    │
+│  (Ubuntu 26.04, 2 vCPU)    │
+├─────────────────────────────┤
+│  CI4 Application            │
+│  (app/ + public/ + vendor/) │
+├─────────────────────────────┤
+│  SQLite (optional)          │
+├─────────────────────────────┤
+│  Contact Form (Postmark)    │
+└─────────────────────────────┘
+```
 
 ## Data Flow
-
-**None found.** No state management, message queues, database schemas, or API contracts are present.
+1. User → OpenLitespeed (static cache) → PHP bootstrap → CI4 routing → view
+2. Contact form → PHP controller → Postmark API → email delivery
+3. Language switch → URL segment (`/id/`, `/en/`) → load corresponding content
 
 ## Key Abstractions
-
-**None found.** No base classes, interfaces, service containers, or dependency injection patterns exist.
+- **Static-first content** — markdown files as source of truth
+- **CI4 views as templates** — single template per page
+- **Translation JSON** — `app/Views/lang/{halaman}.{bahasa}.json` (flat key-value)
+- **Fallback mechanism** — missing translation key → Indonesian
 
 ## Dependency Injection
-
-**None found.** No DI containers, inversion-of-control frameworks, or service locators are present.
+- **None** — CI4 has no DI container in this project scope
+- Composer autoload only
 
 ## Shared Utilities
-
-**None found.** No helper modules, utility packages, or shared libraries exist.
+- CI4 built-in helpers (URL, Form, Security)
+- Custom markdown loader (Parsedown/CommonMark)
 
 ## Technology Stack
+- PHP 8.5 + CodeIgniter 4 + Composer
+- OpenLitespeed + PHP-FPM (max_children=5)
+- SQLite (optional, contact form only)
+- Postmark (email)
+- Let's Encrypt (SSL)
+- GitHub (source repo)
 
-**Unknown.** No lock files (`package-lock.json`, `yarn.lock`, `pnpm-lock.yaml`, `Cargo.lock`, `poetry.lock`, `Gemfile.lock`, `composer.lock`, etc.) and no dependency manifests were found.
+## Deployment
+- **VPS:** IDCloudhost (Ubuntu 26.04, 2 vCPU, 4GB RAM, 40GB)
+- **Method:** Git pull from GitHub `master`
+- **SSL:** Let's Encrypt
+- **Domain:** tambang.indramgl.web.id
+- **OpenLitespeed:** cache level max, static page cache enabled
+- **SSH:** password auth (demo), no firewall/backup/monitoring
+
+## Design Reference
+- **design.md** from OpenDesign — pending delivery, will drive frontend implementation
+- When delivered, integrates into CI4 views as template system
+- Blocks Phase 3 (Content Implementation)
+
+## Build Order
+1. Scaffold CI4 project on VPS
+2. Setup OpenLitespeed + PHP-FPM
+3. Create multilingual structure (`/id/`, `/en/`)
+4. Implement static pages per language
+5. Contact form (Postmark)
+6. Deploy
 
 ## What Needs to Happen
-
-Before architecture research can proceed, source code must be added to this repository. The planning process should define:
-1. What kind of application this will be (web app, API, CLI, mobile, etc.)
-2. The technology stack
-3. The project structure (monorepo vs single package)
-
-Then the architecture documents can be updated with real findings.
+1. **VPS provisioning** — IDCloudhost, Ubuntu 26.04, OpenLitespeed, PHP 8.5
+2. **design.md delivery** — from OpenDesign (blocking dependency)
+3. **CI4 scaffold** — Composer project, directory structure
+4. **Deployment pipeline** — git pull workflow

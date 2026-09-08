@@ -1,38 +1,52 @@
 # External Integrations
 
 **Researched:** 2026-09-07
-**Phase goal:** None defined (ROADMAP.md not found)
+**Updated:** 2026-09-07 (post new-project ceremony + ideation)
 
 ## External APIs
-
-None found — no API client libraries, fetch/axios calls, or API configuration files exist.
+- **Postmark** — email delivery service for contact form (`wildbit/postmark-php` PHP SDK)
+- **OpenDesign** — design.md reference (blocked, pending delivery)
 
 ## Databases
-
-None found — no database drivers, ORM configurations, or schema files (no `prisma.schema`, `models/`, `migrations/`, etc.).
+- **SQLite** — lightweight database for contact form submissions only
+- Optional — not required for static content
+- No ORM, raw PHP SQLite3 extension
 
 ## Auth Providers
-
-None found — no authentication libraries, OAuth configs, or session management code.
+- **None** — no user authentication required (static site, no login)
 
 ## Webhooks
-
-None found — no webhook handlers or endpoint configurations.
+- **None** — no webhook integrations planned
 
 ## Message Queues
+- **None** — no message broker needed (static content, minimal dynamic processing)
 
-None found — no message broker configs (no RabbitMQ, Kafka, Redis pub/sub, SQS references).
+## Hosting & Deployment
+- **IDCloudhost** — VPS provider
+- **GitHub** — source code repository (`git@github.com:indramgl/demo-tambang.git`)
+- **Deployment:** Git pull from `master` branch
+- **SSL:** Let's Encrypt (no auto-renew for demo)
+- **Domain:** tambang.indramgl.web.id
+
+## Server Configuration
+- **Web Server:** OpenLitespeed
+- **PHP-FPM:** max_children = 5, PHP 8.5
+- **OS:** Ubuntu 26.04
+- **SSH:** password auth (open for demo)
+
+## Caching
+- **OpenLitespeed:** max cache level, static page cache enabled
+
+## Email Configuration
+- **Provider:** Postmark
+- **CI4 Dependency:** `wildbit/postmark-php` via Composer
+- **Use Case:** Contact form email delivery only
+- **No database storage for emails** (direct send approach preferred)
 
 ## Current State
-
-- Repository is empty (no commits, no source files).
-- No integration surface exists to analyze.
+- Repository is empty (no source code yet)
+- All integrations defined in planning phase, none implemented
+- design.md integration blocked on OpenDesign delivery
 
 ## Recommended Next Step
-
-Once project source code is added, re-run research to identify:
-1. Database drivers and connection strings
-2. External API endpoints and SDKs
-3. Authentication providers and session strategies
-4. Webhook endpoints and event consumers
-5. Message queue configurations
+Set up VPS + OpenLitespeed + PHP-FPM (Phase 1). Add Postmark dependency during contact form implementation.

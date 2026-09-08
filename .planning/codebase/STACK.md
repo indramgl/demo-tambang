@@ -1,34 +1,41 @@
 # Tech Stack Overview
 
 **Researched:** 2026-09-07
-**Phase goal:** None defined (ROADMAP.md not found)
+**Updated:** 2026-09-07 (post new-project ceremony + ideation)
 
 ## Languages & Runtime
-
-None found — no source files exist in the repository.
+- **PHP 8.5** — CodeIgniter 4 framework runtime
+- **Composer** — dependency manager
 
 ## Frameworks
-
-None found — no framework configuration files detected (no `package.json`, `requirements.txt`, `tsconfig.json`, `vite.config.*`, `webpack.config.*`, `docker-compose.yml`, etc.).
+- **CodeIgniter 4** (PHP MVC framework)
+- No frontend framework (static content, vanilla HTML/CSS/JS)
 
 ## Key Libraries & Dependencies
-
-None found — no lock files (`package-lock.json`, `yarn.lock`, `Pipfile.lock`, `poetry.lock`) and no dependency manifests.
+- `codeigniter4/framework` (Composer)
+- `wildbit/postmark-php` (email delivery for contact form)
+- Parsedown or CommonMark (markdown → HTML conversion)
+- SQLite extension (PHP)
 
 ## Build Configuration
-
-None found — no build tool configs (no `Makefile`, `CMakeLists.txt`, `dockerfile`, `.github/workflows/`, etc.).
+- **Web Server:** OpenLitespeed with PHP-FPM
+- **OS:** Ubuntu 26.04
+- **VPS:** IDCloudhost (2 vCPU, 4GB RAM, 40GB Storage)
 
 ## Environment Variables
-
-None found — no `.env`, `.env.example`, or `.env.sample` files.
+- `.env` for app.baseURL, database config, Postmark API key
+- `.env` includes: app.baseURL, database.host, database.user, database.password, postmark.api_key
 
 ## Current State
-
-- Git repo initialized (`master` branch) with **zero commits**.
-- `.planning/codebase/` directory exists but is empty.
-- No `ROADMAP.md`, `REQUIREMENTS.md`, or `CONTEXT.md` found.
+- Git repo (`master` branch) with 8+ commits (planning artifacts)
+- `.planning/codebase/` directory exists with 7 research docs
+- `.planning/` has PROJECT.md, REQUIREMENTS.md, ROADMAP.md, config.json, notes/, research/, phases/
+- No source code yet — codebase is in planning/pre-scaffold phase
+- design.md pending from OpenDesign (blocks Phase 3)
 
 ## Recommended Next Step
+Scaffold CI4 project on VPS (Phase 1). Re-run this research after source code is added.
 
-Before this document can be populated with meaningful stack information, source code must be added to the repository. Create or clone the project files, then re-run this research.
+## Design Reference
+- **design.md** — to be provided by OpenDesign, will drive frontend implementation
+- Not yet delivered, noted as blocking dependency
