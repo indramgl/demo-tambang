@@ -18,7 +18,7 @@ Website company profile untuk **PT Indah Tambang Raya Semesta** menggunakan **PH
 - **Backend:** PHP CodeIgniter 4
 - **Dependency Manager:** Composer
 - **Database:** SQLite (jika dibutuhkan)
-- **Deployment:** VPS traditional (Apache/nginx + PHP-FPM)
+- **Deployment:** VPS traditional (OpenLitespeed + PHP-FPM)
 - **Design:** design.md (akan disediakan oleh OpenDesign)
 
 ## Multilingual
@@ -46,7 +46,21 @@ Website akan tersedia dalam **6 bahasa internasional**:
 
 ## Open Questions
 
-- 6 bahasa apa saja yang dimaksud?
-- Detail arsitektur VPS (provider, web server)
-- Bagaimana handling multilingual routing di CI4?
 - Portfolio & Investor Relation: format konten (PDF, gambar, table)?
+
+## Current Milestone: v1.0 — Setup & Scaffold
+
+**Goal:** CI4 project scaffolded via Composer with working routing and deployable to staging VPS.
+
+**Target features:**
+- Composer-initiated CodeIgniter 4 project
+- `.gitignore` and initial CI4 config (app.baseURL, database, etc.)
+- Local testing via `php spark serve`
+- Deployable to VPS via Git pull
+- Multilingual directory structure (`app/Views/pages/{halaman}/{bahasa}.md`)
+- CI4 PHP 8.5 + OpenLitespeed compatibility verified
+
+**Anti-goals:** No design integration, no contact form, no CMS, no admin panel, no database logic, no portfolio/IR content.
+
+Last updated: 2026-09-08
+
