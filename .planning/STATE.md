@@ -4,8 +4,8 @@
 
 Phase: 1 — Setup & Scaffold
 Plan: ROADMAP.md — 1 phase, 7 requirements
-Status: execute-phase
-Last activity: 2026-09-08 — Wave 1 complete (CI4 scaffolded, .gitignore verified, git remote configured). Wave 2 complete (php spark serve verified, multilingual dirs created, PHP/CI4/OpenLitespeed compat verified, Xdebug in debug mode). Wave 3 blocked: VPS not provisioned.
+Status: verify-work
+Last activity: 2026-09-08 — verify-work: 4/5 must-haves met. Wave 3 (VPS deploy) blocked — no VPS provisioned.
 Last activity: 2026-09-08 — Phase 1 plan created and verified by plan-checker
 
 ## Last Milestone
