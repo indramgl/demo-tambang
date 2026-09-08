@@ -51,3 +51,4 @@
 - **Translation:** AI (ling-3.0-flash-sante) → langsung publish, no review
 - **Rendering:** CI4 view sebagai template standar, controller baca markdown → HTML via Parsedown/CommonMark
 - **Files:** 6 halaman × 1 markdown + 1 view template per bahasa
+

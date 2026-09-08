@@ -31,8 +31,8 @@
 - **Success criteria:** Directory structure exists for all 6 languages (ID, EN, ZH, FR, ES, JA)
 - **Dependencies:** REQ-001
 
-### REQ-006: CI4 + PHP 8.5 + OpenLitespeed Compatibility
-- **Description:** Verify CI4 v4.7.4 works with PHP 8.5 and OpenLitespeed on VPS
+### REQ-006: CI4 + PHP 8.4 + OpenLitespeed Compatibility
+- **Description:** Verify CI4 v4.7.4 works with PHP 8.4 and OpenLitespeed on VPS
 - **Success criteria:** No compatibility errors, routing works on OpenLitespeed
 - **Dependencies:** REQ-001
 

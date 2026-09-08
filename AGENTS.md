@@ -205,11 +205,11 @@ perusahaan-tambang/
 
 ## Tech Stack
 
-- **Language:** PHP 8.3+
+- **Language:** PHP 8.4+
 - **Framework:** CodeIgniter 4
 - **Dependency Manager:** Composer
 - **Database:** SQLite (optional — only if dynamic features needed)
-- **Web Server:** Apache/nginx + PHP-FPM on VPS
+- **Web Server:** OpenLitespeed + PHP-FPM on VPS
 - **Hosting:** VPS traditional (DigitalOcean/Linode/Hetzner)
 - **Multilingual:** 6 languages via URL path routing (`/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/`)
 - **Design:** design.md from OpenDesign

@@ -14,7 +14,7 @@ CI4 project scaffolded and deployable to staging VPS.
 | REQ-007 | Configure Git remote | `git push origin master` succeeds |
 | REQ-003 | Verify `php spark serve` | App accessible at `localhost:8080` |
 | REQ-005 | Create multilingual directory structure | `app/Views/pages/{halaman}/{bahasa}.md` dirs exist for all 6 languages |
-| REQ-006 | Verify CI4 + PHP 8.5 + OpenLitespeed compatibility | No compatibility errors, routing works |
+| REQ-006 | Verify CI4 + PHP 8.4 + OpenLitespeed compatibility | No compatibility errors, routing works |
 | REQ-004 | Test VPS deploy pipeline | `git pull origin master` works on VPS, app serves correctly |
 
 ### Dependencies
@@ -28,7 +28,7 @@ CI4 project scaffolded and deployable to staging VPS.
 
 ### Risks
 - OpenLitespeed rewrite rules — CI4 `.htaccess` should work, needs validation on VPS
-- PHP 8.5 + CI4 compatibility — CI4 v4.7.4 requires PHP ^8.2, PHP 8.5 satisfies this
+- PHP 8.4 + CI4 compatibility — CI4 v4.7.4 requires PHP ^8.2, PHP 8.4 satisfies this
 - VPS provisioning not yet started — blocks REQ-004
 
 ---
