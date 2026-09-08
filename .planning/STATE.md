@@ -5,7 +5,7 @@
 Phase: 1 — Setup & Scaffold
 Plan: ROADMAP.md — 1 phase, 7 requirements
 Status: shipped
-Last activity: 2026-09-08 — Phase 1 shipped as v1.0.0. 4/5 must-haves met. VPS deploy (REQ-004) blocked on VPS provisioning.
+Last activity: 2026-09-08 — Phase 1 fully shipped as v1.0.0. Compound completed. 4/5 must-haves met. VPS deploy (REQ-004) blocked on VPS provisioning.
 Last activity: 2026-09-08 — Phase 1 plan created and verified by plan-checker
 
 ## Last Milestone
