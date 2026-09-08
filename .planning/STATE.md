@@ -3,7 +3,7 @@
 ## Current Position
 
 Phase: 1 — Setup & Scaffold
-Plan: —
+Plan: ROADMAP.md — 1 phase, 7 requirements
 Status: Planning
 Last activity: 2026-09-08 — Milestone v1.0 started
 

@@ -166,10 +166,10 @@ This project uses **learnship**. Key facts:
 
 <!-- Updated automatically by platform workflows -->
 
-**Milestone:** v1.0 — Company Profile Website
-**Phase:** 0 — Setup & Scaffold
+**Milestone:** v1.0 — Setup & Scaffold
+**Phase:** 1 — Setup & Scaffold
 **Status:** planning
-**Last updated:** 2026-09-07
+**Last updated:** 2026-09-08
 
 ---
 

@@ -1,50 +1,54 @@
-# ROADMAP.md
+# ROADMAP.md — v1.0 Setup & Scaffold
 
 ## Phase 1: Setup & Scaffold
-- Inisiasi project CI4 via Composer
-- Setup VPS (Apache/nginx + PHP-FPM)
-- Struktur directory, .gitignore, config awal
-- **Deliverable:** Project scaffold, bisa deploy ke staging
 
-## Phase 2: Architecture & Multilingual
-- CI4 multilingual routing (`/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/`)
-- Static page structure per bahasa
-- Hreflang tags, structured data
-- **Deliverable:** Routing multilingual berjalan
+### Phase 1 Deliverable
+CI4 project scaffolded and deployable to staging VPS.
 
-## Phase 3: Content Implementation
-- Implementasi 6 halaman per bahasa (Sejarah, Visi-misi, Layanan & Product, Kontak, Portofolio, Investor Relation)
-- Integrasi design.md dari OpenDesign
-- Responsive mobile-first
-- **Deliverable:** Semua halaman live dalam 6 bahasa
+### Tasks
 
-## Phase 4: Contact Form & Investor Relation
-- Contact form dengan validasi + email delivery
-- Investor Relation — PDF upload/download
-- Portfolio gallery
-- **Deliverable:** Form & IR functional
+| REQ-ID | Task | Success Criteria |
+|--------|------|-----------------|
+| REQ-002 | Create `.gitignore` | `.gitignore` covers `.env`, `vendor/`, `writable/`, `.opencode/`, IDE configs |
+| REQ-001 | Scaffold CI4 via Composer | `composer create-project codeigniter4/appstarter` completes without errors |
+| REQ-007 | Configure Git remote | `git push origin master` succeeds |
+| REQ-003 | Verify `php spark serve` | App accessible at `localhost:8080` |
+| REQ-005 | Create multilingual directory structure | `app/Views/pages/{halaman}/{bahasa}.md` dirs exist for all 6 languages |
+| REQ-006 | Verify CI4 + PHP 8.5 + OpenLitespeed compatibility | No compatibility errors, routing works |
+| REQ-004 | Test VPS deploy pipeline | `git pull origin master` works on VPS, app serves correctly |
 
-## Phase 5: Deploy & Test
-- Deploy production ke VPS
-- Apache/nginx config
-- Multilingual SEO testing (hreflang, canonical)
-- Performance testing
-- **Deliverable:** Live di production
+### Dependencies
+1. `.gitignore` (REQ-002) → before any code is written
+2. CI4 scaffold (REQ-001) → before all other tasks
+3. Git remote (REQ-007) → before VPS deploy (REQ-004)
+4. `php spark serve` (REQ-003) → before VPS deploy (REQ-004)
 
-## Dependencies
-1. Design.md (OpenDesign) → sebelum Phase 3
-2. VPS provider + Apache/nginx setup → sebelum Phase 1
-3. Email service → sebelum Phase 4
+### Timeline
+- Phase 1: 2-3 days (solo, prototype quality)
 
-## Timeline Estimasi
-- Phase 1: 2-3 hari
-- Phase 2: 2-3 hari
-- Phase 3: 3-5 hari
-- Phase 4: 2-3 hari
-- Phase 5: 1-2 hari
-- Total: ~10-15 hari
+### Risks
+- OpenLitespeed rewrite rules — CI4 `.htaccess` should work, needs validation on VPS
+- PHP 8.5 + CI4 compatibility — CI4 v4.7.4 requires PHP ^8.2, PHP 8.5 satisfies this
+- VPS provisioning not yet started — blocks REQ-004
 
-## Risks
-- VPS provider belum dipilih
-- Desain dari OpenDesign belum ready
-- 6 bahasa — perlu konfirmasi bahasa spesifik
+---
+
+## v2 Candidates (Next Milestone)
+
+| REQ-ID | Feature | Phase |
+|--------|---------|-------|
+| REQ-008 | Multilingual routing | Phase 2 |
+| REQ-009 | Static page templates | Phase 2 |
+| REQ-010 | Design integration | Phase 3 (blocked by design.md) |
+
+---
+
+## Out of Scope (v1)
+
+- Design integration (design.md pending)
+- Contact form / email
+- CMS / admin panel
+- Portfolio / IR content
+- Database logic
+- User authentication
+- Blog / news
