@@ -14,6 +14,10 @@
 ### Fixes
 - `.opencode/` added to `.gitignore` (was missing from initial creation)
 
+### Milestone Complete
+- Milestone v1.0 archived: `.planning/milestones/v1.0-ROADMAP.md`, `.planning/milestones/v1.0-REQUIREMENTS.md`
+- 6 of 7 requirements delivered (REQ-004 blocked on VPS provisioning)
+
 ### Learnings
 - PHP 8.4.20 is installed on the dev machine (not PHP 8.5 as planned) — CI4 v4.7.4 requires PHP ^8.2, so 8.4 is compatible
 - Xdebug v3.5.1 is pre-installed with PHP — no additional installation needed

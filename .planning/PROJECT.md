@@ -37,6 +37,7 @@ Website akan tersedia dalam **6 bahasa internasional**:
 - Tanpa database relasional → SQLite hanya jika diperlukan
 - Serverless deployment → tidak applicable, pakai VPS
 - Design dipisah → design.md handled oleh OpenDesign
+- v1.0 shipped → 6/7 requirements met, REQ-004 (VPS deploy) blocked on VPS provisioning
 
 ## Batasan
 
@@ -48,17 +49,20 @@ Website akan tersedia dalam **6 bahasa internasional**:
 
 - Portfolio & Investor Relation: format konten (PDF, gambar, table)?
 
-## Current Milestone: v1.0 — Setup & Scaffold
+## Current Milestone: v1.0 — Setup & Scaffold ✓ Shipped
 
 **Goal:** CI4 project scaffolded via Composer with working routing and deployable to staging VPS.
 
-**Target features:**
-- Composer-initiated CodeIgniter 4 project
-- `.gitignore` and initial CI4 config (app.baseURL, database, etc.)
-- Local testing via `php spark serve`
-- Deployable to VPS via Git pull
-- Multilingual directory structure (`app/Views/pages/{halaman}/{bahasa}.md`)
-- CI4 PHP 8.5 + OpenLitespeed compatibility verified
+**Delivered (v1.0):**
+- REQ-001: CI4 project scaffolded via Composer ✓
+- REQ-002: `.gitignore` created ✓
+- REQ-003: Local dev server (`php spark serve`) working ✓
+- REQ-005: Multilingual directory structure created ✓
+- REQ-006: CI4 + PHP 8.4 + OpenLitespeed compatibility verified ✓
+- REQ-007: Git remote configured, push to master works ✓
+
+**Blocked:**
+- REQ-004: VPS deploy pipeline — blocked on VPS provisioning
 
 **Anti-goals:** No design integration, no contact form, no CMS, no admin panel, no database logic, no portfolio/IR content.
 
