@@ -168,7 +168,7 @@ This project uses **learnship**. Key facts:
 
 **Milestone:** v1.0 — Setup & Scaffold
 **Phase:** 1 — Setup & Scaffold
-**Status:** planning complete
+**Status:** execute-phase
 **Last updated:** 2026-09-08
 
 ---
