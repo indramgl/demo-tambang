@@ -166,9 +166,9 @@ This project uses **learnship**. Key facts:
 
 <!-- Updated automatically by platform workflows -->
 
-**Milestone:** v1.0 — Setup & Scaffold
-**Phase:** 1 — Setup & Scaffold
-**Status:** shipped
+**Milestone:** v1.0 — Setup & Scaffold ✓ shipped
+**Phase:** —
+**Status:** milestone complete — ready for next milestone
 **Last updated:** 2026-09-08
 
 ---
@@ -184,11 +184,11 @@ perusahaan-tambang/
 ├── .opencode/            # OpenCode platform config (gitignored)
 ├── .planning/            # Planning artifacts
 │   ├── PROJECT.md        # Project definition
-│   ├── REQUIREMENTS.md   # Requirements
 │   ├── ROADMAP.md        # Roadmap
 │   ├── STATE.md          # Current state
 │   ├── DECISIONS.md      # Decision log
 │   ├── config.json       # Learnship config
+│   ├── milestones/       # Archived milestone artifacts
 │   ├── codebase/         # Codebase map (empty — no existing code)
 │   └── research/         # Research files
 │       ├── STACK.md
