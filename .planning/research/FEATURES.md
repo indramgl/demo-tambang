@@ -1,41 +1,35 @@
-# FEATURES.md
+# FEATURES.md — v1.0 Research
 
-## Table Stakes (Must Have)
-- **Halaman utama (Hero)** — intro perusahaan, CTA
-- **Sejarah** — timeline perjalanan perusahaan
-- **Visi-misi** — nilai-nilai inti
-- **Layanan & Produk** — daftar dengan deskripsi singkat
-- **Kontak** — form, alamat, maps, email, telepon
-- **Portofolio** — galeri proyek/kegiatan
-- **Investor Relation** — laporan keuangan, pengumuman, dokumen
-- **Multilingual** — 6 bahasa (ID, EN, ZH, FR, ES, JA)
-- **Responsive** — mobile-first
+**Researched:** 2026-09-08
+**Scope:** v1.0 Setup & Scaffold capabilities
 
-## Differentiators
-- **Serverless deployment** — edge caching, fast global load
-- **Static generation** — keamanan tinggi, biaya rendah
-- **SEO multilingual** — hreflang, structured data per bahasa
+## Feature: CI4 Project Scaffold
 
-## Anti-Features
-- Admin panel (konten statis)
-- Database relasional (SQLite cukup jika ada)
-- CMS dinamis
-- User login/authentikasi
-- Blog/news (kecuali diperlukan nanti)
+### Composer `create-project`
+- Command: `composer create-project codeigniter4/appstarter project-name`
+- Creates full CI4 directory structure with `app/`, `public/`, `writable/`, `vendor/`
+- **Confidence:** HIGH — standard CI4 installation method
 
-## Complexity
-| Fitur | Complexity |
-|-------|-----------|
-| Static pages | Low |
-| Multilingual routing | Medium |
-| Portfolio gallery | Low |
-| Contact form | Low |
-| Investor Relations PDF | Low |
+### `php spark serve` (Local Dev)
+- Built-in PHP development server
+- Default: `localhost:8080`
+- No web server configuration needed
+- Serves CI4 app locally for development and testing
+- **Confidence:** HIGH — standard CI4 CLI command
 
-## Confidence: MEDIUM
-- Berdasarkan benchmark situs mining company profile (Deploi, The Assay)
-- Fitur spesifik tergantung desain dari OpenDesign
+### Multilingual Directory Structure
+- `app/Views/pages/{halaman}/{bahasa}.md` — markdown content files
+- `app/Views/lang/{halaman}.{bahasa}.json` — translation JSON
+- CI4 routing handles language segments (`/id/`, `/en/`, etc.)
+- **Confidence:** MEDIUM — routing structure planned but not yet implemented
 
-## Sources
-- firecrawl search: "mining company profile website features"
-- firecrawl search: "multilingual company website best practices 2026"
+### VPS Deployment (Git Pull)
+- Git remote on IDCloudhost VPS
+- `git pull origin master` to deploy
+- OpenLitespeed serves from `public/` directory
+- **Confidence:** HIGH — standard deployment pattern
+
+### `.gitignore` for CI4/VPS
+- Excludes: `.env`, `vendor/`, `writable/`, `.opencode/`, IDE configs
+- Must be created BEFORE any code is written
+- **Confidence:** HIGH — standard CI4 `.gitignore` pattern

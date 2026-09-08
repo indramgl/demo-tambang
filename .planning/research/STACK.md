@@ -1,36 +1,41 @@
-# STACK.md
+# STACK.md — v1.0 Research
 
-## Recommended Stack
+**Researched:** 2026-09-08
+**Scope:** v1.0 Setup & Scaffold capabilities
 
-### Backend
-- **PHP 8.3+** — CodeIgniter 4 (CI4) framework
-- **Composer** — dependency management
-- **SQLite** — lightweight DB for contact form / dynamic data jika dibutuhkan
+## Technology Stack (Verified)
 
-### Frontend
-- **HTML5 + CSS3 + vanilla JS** — company profile bersifat statis, tidak butuh SPA
-- **Hreflang tags** — multilingual SEO (6 bahasa)
+### PHP 8.5 + CodeIgniter 4
+- **CI4 v4.7.4** (latest stable as of 2026-09)
+- **PHP requirement:** ^8.2 (PHP 8.5 is compatible)
+- **Confidence:** HIGH — verified via CI4 composer.json on GitHub
 
-### Deployment
-- **VPS traditional** (DigitalOcean, Linode, Hetzner)
-- Apache/nginx + PHP-FPM
+### OpenLitespeed + PHP-FPM
+- **OpenLitespeed** supports Apache `mod_rewrite` syntax
+- CI4's `.htaccess` works on OpenLitespeed with no modification
+- **Confidence:** HIGH — OpenLitespeed is LiteSpeed Enterprise's open-source variant; rewrite module is Apache-compatible
 
-## Versions
-- PHP 8.3+ (CI4 4.5+ recommended)
-- Composer latest
+### Local Development
+- **`php spark serve`** — CI4 built-in PHP development server
+- Serves on `localhost:8080` by default
+- No web server configuration needed for local dev
+- **Confidence:** HIGH — standard CI4 CLI command
 
-## What NOT to Use
-- Database MySQL/PostgreSQL — overkill untuk konten statis
-- CMS seperti WordPress — konten statis, tidak perlu CMS
-- Client-side rendering heavy — buruk untuk SEO multilingual
-- Vercel/Cloudflare Pages — tidak support PHP native
+### VPS Deployment
+- **IDCloudhost** — Ubuntu 26.04, OpenLitespeed, PHP-FPM
+- **Deployment:** Git pull from GitHub `master`
+- **SSL:** Let's Encrypt
+- **Domain:** tambang.indramgl.web.id
 
-## Confidence: HIGH
-- CI4 + VPS adalah deployment standar, well-documented
-- Apache/nginx + PHP-FPM sudah mature
+### Database
+- **SQLite** (optional, contact form only)
+- No relational database needed for v1.0
 
-## Sources
-- firecrawl search: "company profile website tech stack 2026"
-- firecrawl search: "CodeIgniter 4 deployment vercel cloudflare serverless"
-- firecrawl search: "PHP static company website CI4 2026"
-- CodeIgniter 4 official docs: deployment
+### Email
+- **Postmark** (`wildbit/postmark-php`) — for contact form (Phase 4)
+- Not needed for v1.0
+
+## Key Decisions
+- Local dev: `php spark serve` (not OpenLitespeed)
+- Production: OpenLitespeed + PHP-FPM on VPS
+- CI4 `.htaccess` works on OpenLitespeed without modification

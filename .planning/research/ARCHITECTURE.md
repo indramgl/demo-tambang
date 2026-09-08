@@ -1,47 +1,53 @@
-# ARCHITECTURE.md
+# ARCHITECTURE.md — v1.0 Research
 
-## Component Boundaries
+**Researched:** 2026-09-08
+**Scope:** v1.0 Setup & Scaffold capabilities
+
+## Architecture Pattern
+
+**Traditional PHP Monolith on VPS** — single-server deployment.
 
 ```
 ┌─────────────────────────────┐
-│  VPS (DigitalOcean/Linode) │
+│  CDN / Static Cache        │
+│  (OpenLitespeed page cache)│
 ├─────────────────────────────┤
-│  Apache/nginx + PHP-FPM     │
+│  OpenLitespeed + PHP-FPM    │
+│  (Ubuntu 26.04, 2 vCPU)    │
 ├─────────────────────────────┤
 │  CI4 Application            │
+│  (app/ + public/ + vendor/) │
 ├─────────────────────────────┤
 │  SQLite (optional)          │
 ├─────────────────────────────┤
-│  Contact Form (mail())      │
+│  Contact Form (Postmark)    │
 └─────────────────────────────┘
 ```
 
-## Data Flow
-1. User → CDN edge → static page (cached)
-2. Contact form → serverless function → email/SQLite
-3. Language switch → URL-based routing (`/id/`, `/en/`, `/zh/`, dll.)
+## Local vs Production Decoupling
 
-## Build Order
-1. Scaffold CI4 project di VPS
-2. Setup Apache/nginx + PHP-FPM
-3. Buat halaman statis per bahasa
-4. Integrasi multilingual routing
+| Aspect | Local Dev | Production VPS |
+|--------|-----------|----------------|
+| Web Server | `php spark serve` | OpenLitespeed + PHP-FPM |
+| URL | `localhost:8080` | `tambang.indramgl.web.id` |
+| SSL | None | Let's Encrypt |
+| Config | `.env` local | `.env` on VPS |
+| Deployment | N/A | Git pull from GitHub |
 
-## Integration Points
-- OpenDesign → design.md → frontend implementation
-- CDN edge caching → static assets
-- Email service → contact form (opsional)
+## OpenLitespeed + CI4 Compatibility
 
-## Confidence: HIGH
-- CI4 + Apache/nginx + PHP-FPM adalah standar deployment
-- Multilingual routing CI4 sudah supported — mungkin butuh static export
+- OpenLitespeed supports Apache `mod_rewrite` syntax
+- CI4's `.htaccess` uses `mod_rewrite` directives
+- **No modification needed** — `.htaccess` works as-is on OpenLitespeed
+- OpenLitespeed's rewrite engine is Apache-compatible
+- **Confidence:** HIGH
 
-## Key Decisions
-- Static-first → generate HTML statis per bahasa
-- Serverless functions hanya untuk contact form
-- SQLite hanya jika ada fitur dinamis
+## PHP 8.5 Compatibility
 
-## Sources
-- firecrawl search: "CodeIgniter 4 deployment vercel cloudflare serverless"
-- firecrawl search: "PHP static company website CI4 2026"
-- CodeIgniter 4 official docs: deployment, running
+- CI4 v4.7.4 requires PHP ^8.2
+- PHP 8.5 satisfies this requirement
+- **Confidence:** HIGH
+
+## Key Risks
+- OpenLitespeed specific configuration (cache levels, page cache) needs validation during Phase 1 provisioning
+- PHP-FPM `max_children=5` on 4GB RAM — sufficient for static site load

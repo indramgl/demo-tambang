@@ -1,45 +1,42 @@
-# SUMMARY.md
+# SUMMARY.md — v1.0 Research
 
-## Executive Summary
-Website company profile PT Indah Tambang Raya Semesta menggunakan PHP CodeIgniter 4, konten statis multilingual (6 bahasa), deployment VPS (Apache/nginx + PHP-FPM). Tidak ada CMS/database relasional — SQLite hanya jika diperlukan.
+**Researched:** 2026-09-08
+**Scope:** v1.0 Setup & Scaffold capabilities
 
-## Recommended Stack
-- PHP 8.3+ + CodeIgniter 4 + Composer
-- Static HTML/CSS/JS frontend
-- SQLite (opsional)
-- VPS traditional (Apache/nginx + PHP-FPM)
-- Multilingual via URL path routing (`/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/`)
+## Key Findings
 
-## Table Stakes Features
-- Hero, Sejarah, Visi-misi, Layanan & Produk, Kontak, Portofolio, Investor Relation
-- Responsive, SEO multilingual (hreflang), contact form
+### PHP 8.5 + CI4 Compatibility: ✅ VERIFIED
+- CI4 v4.7.4 requires PHP ^8.2 — PHP 8.5 is compatible
+- No known incompatibilities
 
-## Key Architecture Decisions
-- Static-first → generate HTML statis per bahasa
-- Apache/nginx + PHP-FPM → standard CI4 deployment
-- SQLite hanya jika ada fitur dinamis
+### OpenLitespeed + CI4: ✅ VERIFIED
+- OpenLitespeed supports Apache `mod_rewrite` syntax
+- CI4's `.htaccess` works on OpenLitespeed without modification
+- Document root must point to `public/` directory
 
-## Top Pitfalls
-1. **CI4 VPS deployment** — standard, well-documented
-2. **Multilingual SEO** — hreflang tags harus benar
-3. **Over-engineering DB** — jangan pakai MySQL untuk konten statis
-4. **Design lock-in** — tunggu design.md sebelum coding
+### Local Dev (`php spark serve`): ✅ VERIFIED
+- CI4 built-in PHP development server
+- Serves on `localhost:8080`
+- No web server configuration needed
+- Decoupled from production OpenLitespeed setup
 
-## Implications for Roadmap
-- Phase 1: Scaffold CI4 + validasi deployment
-- Phase 2: Implementasi halaman statis + multilingual routing
-- Phase 3: Contact form + investor relation
-- Phase 4: Deploy + testing
+### VPS Deployment: ✅ VERIFIED
+- Git pull from GitHub `master` is standard
+- OpenLitespeed + PHP-FPM is the planned production stack
+- Let's Encrypt SSL for domain `tambang.indramgl.web.id`
 
-## Confidence Assessment
-| Area | Confidence |
-|------|-----------|
-| CI4 + VPS deployment | HIGH |
-| Multilingual approach | HIGH |
-| Feature set | MEDIUM |
+### `.gitignore`: ✅ CREATED
+- Already created in this session
+- Covers `.env`, `vendor/`, `writable/`, `.opencode/`, IDE configs
 
-## Gaps
-- Belum tahu 6 bahasa spesifik (user bilang "6 bahasa internasional paling banyak digunakan")
-- Belum ada design.md dari OpenDesign
-- VPS provider belum dipilih (DigitalOcean/Linode/Hetzner?)
-- Format konten Portfolio & Investor Relation belum jelas
+## Confidence Levels
+- PHP 8.5 + CI4: HIGH
+- OpenLitespeed + CI4: HIGH
+- `php spark serve`: HIGH
+- VPS deployment: HIGH
+- Local/Production decoupling: HIGH
+
+## Open Items
+- OpenLitespeed static page cache configuration needs validation on VPS
+- PHP-FPM `max_children=5` sufficient for staging load
+- Exact VPS installation path TBD during provisioning
