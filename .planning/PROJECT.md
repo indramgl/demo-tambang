@@ -66,5 +66,19 @@ Website akan tersedia dalam **6 bahasa internasional**:
 
 **Anti-goals:** No design integration, no contact form, no CMS, no admin panel, no database logic, no portfolio/IR content.
 
+---
+
+## Current Milestone: v2.0 — Skeleton Pages & Design Integration
+
+**Goal:** Create skeleton pages for all agreed pages following design.md, with multilingual routing, static page templates, and design integration (REQ-008 through REQ-010).
+
+**Target features:**
+- Multilingual routing (`/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/`) — REQ-008
+- Static page templates rendering markdown as HTML with consistent layout — REQ-009
+- Design integration: apply design.md tokens, components, and layout to CI4 views — REQ-010
+- 7 skeleton pages (home, history, vision-mission, services, contact, portfolio, investor relation)
+
+**Anti-goals:** No CMS, no database, no design iteration after skeleton, no content writing, no VPS deployment.
+
 Last updated: 2026-09-08
 

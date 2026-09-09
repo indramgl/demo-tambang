@@ -2,10 +2,10 @@
 
 ## Current Position
 
-Phase: —
+Phase: Not started (defining requirements)
 Plan: —
-Status: milestone complete — ready for next milestone
-Last activity: 2026-09-08 — v1.0 milestone completed and tagged. 6/7 requirements delivered.
+Status: Defining requirements
+Last activity: 2026-09-08 — Milestone v2.0 started. Scope: skeleton pages + design integration (REQ-008 through REQ-010).
 
 ## Last Milestone
 
@@ -26,9 +26,11 @@ Key achievements: CI4 project scaffolded and deployable to staging VPS. All code
 - Static content only — no CMS, no database
 - Design: design.md from OpenDesign pending (blocks Phase 3)
 - v1.0 shipped with 6/7 requirements met; REQ-004 blocked on external VPS provisioning
+- v2.0 scope: skeleton pages + design integration (REQ-008 through REQ-010)
+- v2.0 anti-goals: No CMS, no database, no design iteration after skeleton, no content writing, no VPS deployment
 
 ### Blockers
-- design.md from OpenDesign — blocks Phase 3
+- design.md from OpenDesign — design.md already exists in repo, but may receive updates before v3
 - CI4 PHP 8.5 + OpenLitespeed compatibility — verified during Phase 1
 - `.gitignore` must be created before any code is written
 - REQ-004 (VPS deploy pipeline) — blocked on VPS provisioning
@@ -36,4 +38,5 @@ Key achievements: CI4 project scaffolded and deployable to staging VPS. All code
 ### Open Questions
 - Exact VPS installation path (TBD during installation)
 - CI4 PHP 8.5 + OpenLitespeed compatibility on VPS
-- design.md delivery date from OpenDesign
+- design.md delivery date from OpenDesign — already in repo, may receive updates
+- Portfolio & Investor Relation: format konten (PDF, gambar, table)?
