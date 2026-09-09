@@ -1,35 +1,43 @@
-# FEATURES.md — v1.0 Research
+# FEATURES.md — v2.0 Research
 
 **Researched:** 2026-09-08
-**Scope:** v1.0 Setup & Scaffold capabilities
+**Scope:** v2.0 Skeleton Pages & Design Integration
 
-## Feature: CI4 Project Scaffold
+## New Features for v2.0
 
-### Composer `create-project`
-- Command: `composer create-project codeigniter4/appstarter project-name`
-- Creates full CI4 directory structure with `app/`, `public/`, `writable/`, `vendor/`
-- **Confidence:** HIGH — standard CI4 installation method
+### REQ-008: Multilingual Routing
+- **What:** CI4 routes handle `/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/` URL segments
+- **How:** `$routes->group('{locale}', ['filter' => 'locale'], ...)` in `app/Config/Routes.php`
+- **Locale filter:** Custom filter validates locale against `['id', 'en', 'zh', 'fr', 'es', 'ja']`
+- **Default locale:** Indonesian (`id`) for root URL `/`
+- **Language switcher:** Navbar component with links that preserve current page, change locale segment
+- **Hreflang tags:** Auto-generated in `<head>` based on current page and locale
+- **Source:** design.md section 5, CI4 routing docs
 
-### `php spark serve` (Local Dev)
-- Built-in PHP development server
-- Default: `localhost:8080`
-- No web server configuration needed
-- Serves CI4 app locally for development and testing
-- **Confidence:** HIGH — standard CI4 CLI command
+### REQ-009: Static Page Templates
+- **What:** CI4 views render markdown content as HTML pages with consistent layout
+- **How:** Controller reads markdown file, converts via Parsedown/CommonMark, passes to view
+- **Layout:** `layouts/main.php` wraps all pages with header, navbar, content, footer
+- **Partials:** `hero.php`, `breadcrumb.php`, `features.php`, `cta.php` reusable components
+- **Per-page views:** `home.php`, `history.php`, `vision-mission.php`, `services.php`, `contact.php`, `portfolio.php`, `investor.php`
+- **Source:** design.md section 4, CI4 view docs
 
-### Multilingual Directory Structure
-- `app/Views/pages/{halaman}/{bahasa}.md` — markdown content files
-- `app/Views/lang/{halaman}.{bahasa}.json` — translation JSON
-- CI4 routing handles language segments (`/id/`, `/en/`, etc.)
-- **Confidence:** MEDIUM — routing structure planned but not yet implemented
+### REQ-010: Design Integration
+- **What:** Apply design.md from OpenDesign to CI4 views/templates
+- **How:** CSS custom properties from design.md `:root` in `public/assets/css/main.css`
+- **Components:** Buttons (pill, primary, secondary, outlined, ghost), Cards (flat, 20px radius), Navigation, Form fields
+- **Layout:** Container with max-width 1180px, responsive breakpoints, section spacing
+- **Typography:** Inter font family, defined sizes/weights per design.md tokens
+- **Source:** design.md sections 1-8
 
-### VPS Deployment (Git Pull)
-- Git remote on IDCloudhost VPS
-- `git pull origin master` to deploy
-- OpenLitespeed serves from `public/` directory
-- **Confidence:** HIGH — standard deployment pattern
+## Feature Dependencies
+- REQ-008 (multilingual routing) → REQ-009 (page templates need locale-aware routing)
+- REQ-010 (design integration) → REQ-009 (templates need design tokens to render correctly)
+- All three are interdependent — implement together in a single phase
 
-### `.gitignore` for CI4/VPS
-- Excludes: `.env`, `vendor/`, `writable/`, `.opencode/`, IDE configs
-- Must be created BEFORE any code is written
-- **Confidence:** HIGH — standard CI4 `.gitignore` pattern
+## Out of Scope for v2.0
+- Contact form logic (Phase 4)
+- Database/SQLite (Phase 4)
+- Admin panel
+- Portfolio/IR content creation (placeholder only)
+- VPS deployment
