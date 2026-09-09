@@ -1,0 +1,259 @@
+/* === Hero Section === */
+.hero {
+  padding-top: 104px;
+  padding-bottom: 104px;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1.21;
+  letter-spacing: -0.48px;
+  color: var(--fg);
+}
+
+.hero-subtitle {
+  font-size: 1.13rem;
+  font-weight: 400;
+  line-height: 1.56;
+  letter-spacing: -0.09px;
+  color: var(--fg-2);
+  margin-top: var(--space-4);
+}
+
+/* === Timeline === */
+.timeline {
+  position: relative;
+  padding-left: var(--space-8);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: var(--space-6);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--space-8) * -1);
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--space-8) * -1 + 5px);
+  top: 20px;
+  width: 2px;
+  height: calc(100% - var(--space-4));
+  background-color: var(--border);
+}
+
+.timeline-item:last-child::after {
+  display: none;
+}
+
+.timeline-year {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.timeline-content {
+  font-size: 1rem;
+  color: var(--fg-2);
+  margin-top: var(--space-2);
+}
+
+/* === Service Grid === */
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.service-card {
+  padding: var(--space-6);
+}
+
+.service-card h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.33;
+  color: var(--fg);
+  margin-bottom: var(--space-3);
+}
+
+.service-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--fg-2);
+}
+
+/* === Portfolio Grid === */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.portfolio-item {
+  overflow: hidden;
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.portfolio-item h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--fg);
+  margin-top: var(--space-3);
+}
+
+.portfolio-item p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-top: var(--space-2);
+}
+
+/* === Contact Layout === */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.contact-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.contact-info-item h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.contact-info-item p,
+.contact-info-item a {
+  font-size: 1rem;
+  color: var(--fg-2);
+  text-decoration: none;
+}
+
+/* === Investor Document Table === */
+.document-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.document-table th,
+.document-table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.document-table th {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.document-table td {
+  color: var(--fg-2);
+}
+
+.document-table tr:hover {
+  background-color: var(--surface-warm);
+}
+
+/* === Stats === */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-top: var(--space-2);
+}
+
+/* === CTA Section === */
+.cta-section {
+  text-align: center;
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--fg);
+  margin-bottom: var(--space-4);
+}
+
+.cta-section p {
+  font-size: 1rem;
+  color: var(--fg-2);
+  margin-bottom: var(--space-6);
+}
+
+/* === Breadcrumb === */
+.breadcrumb {
+  display: flex;
+  gap: var(--space-2);
+  list-style: none;
+  padding: var(--space-4) 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: '/';
+  margin-left: var(--space-2);
+  color: var(--border);
+}

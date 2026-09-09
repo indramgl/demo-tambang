@@ -1,0 +1,92 @@
+/* === Buttons === */
+.btn,
+.button {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.125rem var(--accent);
+}
+
+.btn-primary-dark {
+  background-color: var(--fg);
+  color: var(--surface);
+}
+
+.btn-secondary-light {
+  background-color: var(--border-soft);
+  color: var(--fg);
+}
+
+.btn-outlined {
+  background-color: transparent;
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+.btn-ghost-on-dark {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--surface);
+  border-color: var(--surface);
+}
+
+/* === Cards === */
+.card {
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+}
+
+/* === Navigation === */
+.nav {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.nav-toggle {
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--border);
+  padding: 12px;
+}
+
+/* === Form Fields === */
+.form-field,
+input {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--fg);
+  background-color: var(--surface);
+  width: 100%;
+}
+
+.form-field:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.125rem var(--accent);
+}
+
+.form-field::placeholder {
+  color: var(--muted);
+}
