@@ -1,0 +1,30 @@
+:root {
+  --bg: #f7f8fb;
+  --surface: #ffffff;
+  --surface-warm: #eef4ff;
+  --fg: #111827;
+  --fg-2: #334155;
+  --muted: #64748b;
+  --accent: #0666eb;
+  --accent-on: #ffffff;
+  --accent-hover: color-mix(in oklab, var(--accent), black 8%);
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+  --success: #16a34a;
+  --warn: #f59e0b;
+  --danger: #ef4444;
+  --border: #dbe3ef;
+  --border-soft: #edf2f7;
+  --meta: #0666eb;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 30px;
+  --radius-pill: 9999px;
+}
