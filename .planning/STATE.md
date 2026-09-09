@@ -2,10 +2,10 @@
 
 ## Current Position
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-09-08 — Milestone v2.0 started. Scope: skeleton pages + design integration (REQ-008 through REQ-010).
+Phase: 1 — Skeleton Pages & Design Integration
+Plan: ROADMAP.md — 1 phase, 3 requirements
+Status: context captured — ready for plan-phase
+Last activity: 2026-09-08 — v2.0 milestone started. Phase 1 context captured (discuss-phase complete).
 
 ## Last Milestone
 
@@ -28,9 +28,10 @@ Key achievements: CI4 project scaffolded and deployable to staging VPS. All code
 - v1.0 shipped with 6/7 requirements met; REQ-004 blocked on external VPS provisioning
 - v2.0 scope: skeleton pages + design integration (REQ-008 through REQ-010)
 - v2.0 anti-goals: No CMS, no database, no design iteration after skeleton, no content writing, no VPS deployment
+- v2.0 Phase 1 decisions: Custom locale filter, route-level redirect for root URL, pre-render markdown during deploy, auto-generate tokens.css from design.md
 
 ### Blockers
-- design.md from OpenDesign — design.md already exists in repo, but may receive updates before v3
+- design.md from OpenDesign — already in repo, may receive updates before v3
 - CI4 PHP 8.5 + OpenLitespeed compatibility — verified during Phase 1
 - `.gitignore` must be created before any code is written
 - REQ-004 (VPS deploy pipeline) — blocked on VPS provisioning
