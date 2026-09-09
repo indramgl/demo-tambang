@@ -9,18 +9,18 @@ Completed: 2026-09-08. 1 phase, 6 of 7 requirements delivered (REQ-004 blocked o
 
 ## v2.0 — Skeleton Pages & Design Integration
 
-### Phase 1: Multilingual Routing & Static Page Templates
+### Phase 1: Multilingual Routing & Static Page Templates ✓ Complete (2026-09-09)
 
 #### Phase 1 Deliverable
 CI4 app serves skeleton pages with multilingual routing — all 7 pages accessible in all 6 languages via URL path (`/id/`, `/en/`, etc.).
 
 #### Tasks
 
-| REQ-ID | Task | Success Criteria |
-|--------|------|-----------------|
-| REQ-008 | Implement multilingual routing | Routes handle `/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/` URL segments; locale filter validates against supported list |
-| REQ-009 | Create static page templates | 7 skeleton pages render with consistent layout (header, content, footer); markdown content served as HTML |
-| REQ-010 | Apply design.md tokens and components | CSS custom properties from design.md applied; Revolut Design System 2.0 components (buttons, cards, nav, forms) implemented |
+| REQ-ID | Task | Success Criteria | Status |
+|--------|------|-----------------|--------|
+| REQ-008 | Implement multilingual routing | Routes handle `/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/` URL segments; locale filter validates against supported list | ✓ Complete |
+| REQ-009 | Create static page templates | 7 skeleton pages render with consistent layout (header, content, footer); markdown content served as HTML | ✓ Complete |
+| REQ-010 | Apply design.md tokens and components | CSS custom properties from design.md applied; Revolut Design System 2.0 components (buttons, cards, nav, forms) implemented | ✓ Complete |
 
 #### Dependencies
 1. REQ-008 (multilingual routing) → before REQ-009 (pages need locale-aware routing)

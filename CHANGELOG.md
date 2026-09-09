@@ -22,5 +22,17 @@
 - PHP 8.4.20 is installed on the dev machine (not PHP 8.5 as planned) — CI4 v4.7.4 requires PHP ^8.2, so 8.4 is compatible
 - Xdebug v3.5.1 is pre-installed with PHP — no additional installation needed
 - CI4 `.htaccess` uses standard `mod_rewrite` syntax — OpenLitespeed supports this natively, no rewrite rule modifications needed
-- `composer create-project` cannot install into a non-empty directory — scaffold to temp dir then copy files
 - PowerShell on Windows does not support `&&` or `head` — use `;` for command chaining and `Select-Object -First` for truncation
+
+---
+
+## v2.0.0 — 2026-09-09
+
+### Features
+- Phase 1 complete: Multilingual routing, static page templates, and design integration
+- Locale filter (`app/Filters/Locale.php`) validates URL locale segments and redirects invalid ones to `/id/`
+- 7 skeleton pages accessible in all 6 locales via URL path routing
+- Design tokens auto-generated from `design.md` via `php spark design:sync`
+- 4 CSS files (tokens.css, main.css, components.css, pages.css, responsive.css) with Revolut Design System 2.0 tokens
+- Pre-render deploy command (`php spark render:pages`) for markdown-to-HTML conversion
+- Composer `post-install-cmd` runs design:sync automatically

@@ -167,9 +167,9 @@ This project uses **learnship**. Key facts:
 <!-- Updated automatically by platform workflows -->
 
 **Milestone:** v2.0 — Skeleton Pages & Design Integration
-**Phase:** 1 — Multilingual Routing & Static Page Templates
-**Status:** planning
-**Last updated:** 2026-09-08
+**Phase:** 1 — Multilingual Routing & Static Page Templates ✓ complete
+**Status:** verifying
+**Last updated:** 2026-09-09
 
 ---
 
@@ -178,7 +178,14 @@ This project uses **learnship**. Key facts:
 ```
 perusahaan-tambang/
 ├── app/                  # CI4 application (controllers, models, views)
+│   ├── Commands/         # CLI commands (DesignSync, RenderPages)
+│   ├── Controllers/      # Controllers (Home.php)
+│   ├── Filters/          # Custom filters (Locale.php)
+│   ├── Views/
+│   │   ├── layouts/      # Layout templates (main.php, navbar.php, footer.php)
+│   │   └── pages/        # Page views (home, history, vision-mission, services, contact, portfolio, investor)
 ├── public/               # Document root (index.php, assets)
+│   └── assets/css/       # CSS files (tokens.css, main.css, components.css, pages.css, responsive.css)
 ├── writable/             # Writable directory (logs, cache, sessions)
 ├── vendor/               # Composer dependencies
 ├── .opencode/            # OpenCode platform config (gitignored)
@@ -196,7 +203,7 @@ perusahaan-tambang/
 │       ├── ARCHITECTURE.md
 │       ├── PITFALLS.md
 │       └── SUMMARY.md
-├── design.md             # Design reference from OpenDesign (pending)
+├── design.md             # Design reference from OpenDesign
 ├── AGENTS.md             # This file
 └── README.md
 ```
