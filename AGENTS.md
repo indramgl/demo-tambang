@@ -166,9 +166,9 @@ This project uses **learnship**. Key facts:
 
 <!-- Updated automatically by platform workflows -->
 
-**Milestone:** v1.0 — Setup & Scaffold ✓ shipped
-**Phase:** —
-**Status:** milestone complete — ready for next milestone
+**Milestone:** v2.0 — Skeleton Pages & Design Integration
+**Phase:** 1 — Multilingual Routing & Static Page Templates
+**Status:** planning
 **Last updated:** 2026-09-08
 
 ---
