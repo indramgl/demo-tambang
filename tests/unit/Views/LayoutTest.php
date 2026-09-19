@@ -75,6 +75,54 @@ final class LayoutTest extends CIUnitTestCase
         );
     }
 
+    public function testMainLayoutUsesRenderSection(): void
+    {
+        $layoutFile = APPPATH . 'Views/layouts/main.php';
+        $this->assertFileExists($layoutFile);
+        $content = file_get_contents($layoutFile);
+        $this->assertStringContainsString(
+            "\$this->renderSection('content')",
+            $content,
+            'main.php must use renderSection for content rendering'
+        );
+    }
+
+    public function testMainLayoutDoesNotUseContentVariable(): void
+    {
+        $layoutFile = APPPATH . 'Views/layouts/main.php';
+        $this->assertFileExists($layoutFile);
+        $content = file_get_contents($layoutFile);
+        $this->assertDoesNotMatchRegularExpression(
+            '/<\?=\s*\\$content\s*\?>/',
+            $content,
+            'main.php must not use <?= $content ?> pattern'
+        );
+    }
+
+    public function testMainLayoutNoLtrimServiceUri(): void
+    {
+        $layoutFile = APPPATH . 'Views/layouts/main.php';
+        $this->assertFileExists($layoutFile);
+        $content = file_get_contents($layoutFile);
+        $this->assertStringNotContainsString(
+            "ltrim(service('uri')->getPath()",
+            $content,
+            'main.php must not use ltrim(service(\'uri\')->getPath()) for URL generation'
+        );
+    }
+
+    public function testMainLayoutHreflangUsesLocaleUrls(): void
+    {
+        $layoutFile = APPPATH . 'Views/layouts/main.php';
+        $this->assertFileExists($layoutFile);
+        $content = file_get_contents($layoutFile);
+        $this->assertStringContainsString(
+            '$localeUrls',
+            $content,
+            'main.php must use $localeUrls for hreflang tags'
+        );
+    }
+
     public function testNavbarExists(): void
     {
         $navbarFile = APPPATH . 'Views/layouts/navbar.php';
