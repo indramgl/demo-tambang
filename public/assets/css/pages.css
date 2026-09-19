@@ -1,0 +1,289 @@
+/* === Hero Section === */
+.hero {
+  padding-top: 104px;
+  padding-bottom: 104px;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: var(--font-display-hero-size);
+  font-weight: var(--font-display-hero-weight);
+  line-height: var(--font-display-hero-line-height);
+  letter-spacing: var(--font-display-hero-letter-spacing);
+  color: var(--fg);
+}
+
+.hero-subtitle {
+  font-size: var(--font-body-large-size);
+  font-weight: var(--font-body-large-weight);
+  line-height: var(--font-body-large-line-height);
+  letter-spacing: var(--font-body-large-letter-spacing);
+  color: var(--fg-2);
+  margin-top: var(--space-4);
+}
+
+/* === Timeline === */
+.timeline {
+  position: relative;
+  padding-left: var(--space-8);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: var(--space-6);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--space-8) * -1);
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: calc(var(--space-8) * -1 + 5px);
+  top: 20px;
+  width: 2px;
+  height: calc(100% - var(--space-4));
+  background-color: var(--border);
+}
+
+.timeline-item:last-child::after {
+  display: none;
+}
+
+.timeline-year {
+  font-size: var(--font-sub-heading-size);
+  font-weight: var(--font-sub-heading-weight);
+  line-height: var(--font-sub-heading-line-height);
+  color: var(--accent);
+}
+
+.timeline-content {
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  color: var(--fg-2);
+  margin-top: var(--space-2);
+}
+
+/* === Service Grid === */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.service-card {
+  padding: var(--space-6);
+}
+
+.service-card h3 {
+  font-size: var(--font-feature-title-size);
+  font-weight: var(--font-feature-title-weight);
+  line-height: var(--font-feature-title-line-height);
+  color: var(--fg);
+  margin-bottom: var(--space-3);
+}
+
+.service-card p {
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  color: var(--fg-2);
+}
+
+/* === Portfolio Grid === */
+.portfolio-filter {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.portfolio-item {
+  overflow: hidden;
+}
+
+.portfolio-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.portfolio-item h3 {
+  font-size: var(--font-feature-title-size);
+  font-weight: var(--font-feature-title-weight);
+  line-height: var(--font-feature-title-line-height);
+  color: var(--fg);
+  margin-top: var(--space-3);
+}
+
+.portfolio-item p {
+  font-size: var(--font-body-size);
+  color: var(--muted);
+  margin-top: var(--space-2);
+}
+
+/* === Contact Layout === */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.contact-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.contact-info-item h4 {
+  font-size: var(--font-section-heading-size);
+  font-weight: var(--font-section-heading-weight);
+  line-height: var(--font-section-heading-line-height);
+  letter-spacing: var(--font-section-heading-letter-spacing);
+  color: var(--fg);
+}
+
+.contact-info-item p,
+.contact-info-item a {
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  color: var(--fg-2);
+  text-decoration: none;
+}
+
+/* === Investor Document Table === */
+.document-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.document-table th,
+.document-table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.document-table th {
+  font-weight: var(--font-body-semibold-weight);
+  font-size: var(--font-body-semibold-size);
+  line-height: var(--font-body-semibold-line-height);
+  letter-spacing: var(--font-body-semibold-letter-spacing);
+  color: var(--fg);
+}
+
+.document-table td {
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  color: var(--fg-2);
+}
+
+.document-table tr:hover {
+  background-color: var(--surface-warm);
+}
+
+/* === Grid === */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+/* === Core Values === */
+.core-values {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+/* === Stats === */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: var(--font-card-title-size);
+  font-weight: var(--font-card-title-weight);
+  line-height: var(--font-card-title-line-height);
+  color: var(--accent);
+}
+
+.stat-label {
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  color: var(--muted);
+  margin-top: var(--space-2);
+}
+
+/* === CTA Section === */
+.cta {
+  text-align: center;
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+
+.cta h2 {
+  font-size: var(--font-section-heading-size);
+  font-weight: var(--font-section-heading-weight);
+  color: var(--fg);
+  margin-bottom: var(--space-4);
+}
+
+.cta p {
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  color: var(--fg-2);
+  margin-bottom: var(--space-6);
+}
+
+/* === Breadcrumb === */
+.breadcrumb {
+  display: flex;
+  gap: var(--space-2);
+  list-style: none;
+  padding: var(--space-4) 0;
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  line-height: var(--font-caption-line-height);
+  letter-spacing: var(--font-caption-letter-spacing);
+  color: var(--muted);
+}
+
+.breadcrumb a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: '/';
+  margin-left: var(--space-2);
+  color: var(--border);
+}

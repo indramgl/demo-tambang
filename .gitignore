@@ -3,6 +3,9 @@ env
 .env
 writable/
 
+# Generated content
+public/content/
+
 # IDE
 .idea/
 .vscode/

@@ -166,10 +166,10 @@ This project uses **learnship**. Key facts:
 
 <!-- Updated automatically by platform workflows -->
 
-**Milestone:** v1.0 — Setup & Scaffold
-**Phase:** 1 — Setup & Scaffold
-**Status:** shipped
-**Last updated:** 2026-09-08
+**Milestone:** v2.0 — Skeleton Pages & Design Integration ✓ Complete
+**Phase:** 02 — Skeleton Pages & Design Integration ✓ complete → Phase 03 (TBD)
+**Status:** verifying
+**Last updated:** 2026-09-19
 
 ---
 
@@ -178,17 +178,24 @@ This project uses **learnship**. Key facts:
 ```
 perusahaan-tambang/
 ├── app/                  # CI4 application (controllers, models, views)
+│   ├── Commands/         # CLI commands (DesignSync, RenderPages)
+│   ├── Controllers/      # Controllers (Home.php)
+│   ├── Filters/          # Custom filters (Locale.php)
+│   ├── Views/
+│   │   ├── layouts/      # Layout templates (main.php, navbar.php, footer.php)
+│   │   └── pages/        # Page views (home, history, vision-mission, services, contact, portfolio, investor)
 ├── public/               # Document root (index.php, assets)
+│   └── assets/css/       # CSS files (tokens.css, main.css, components.css, pages.css, responsive.css)
 ├── writable/             # Writable directory (logs, cache, sessions)
 ├── vendor/               # Composer dependencies
 ├── .opencode/            # OpenCode platform config (gitignored)
 ├── .planning/            # Planning artifacts
 │   ├── PROJECT.md        # Project definition
-│   ├── REQUIREMENTS.md   # Requirements
 │   ├── ROADMAP.md        # Roadmap
 │   ├── STATE.md          # Current state
 │   ├── DECISIONS.md      # Decision log
 │   ├── config.json       # Learnship config
+│   ├── milestones/       # Archived milestone artifacts
 │   ├── codebase/         # Codebase map (empty — no existing code)
 │   └── research/         # Research files
 │       ├── STACK.md
@@ -196,7 +203,7 @@ perusahaan-tambang/
 │       ├── ARCHITECTURE.md
 │       ├── PITFALLS.md
 │       └── SUMMARY.md
-├── design.md             # Design reference from OpenDesign (pending)
+├── design.md             # Design reference from OpenDesign
 ├── AGENTS.md             # This file
 └── README.md
 ```

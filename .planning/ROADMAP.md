@@ -1,54 +1,49 @@
-# ROADMAP.md — v1.0 Setup & Scaffold
+# ROADMAP.md — v2.0 Skeleton Pages & Design Integration
 
-## Phase 1: Setup & Scaffold
+## Completed Milestones
 
-### Phase 1 Deliverable
-CI4 project scaffolded and deployable to staging VPS.
+### v1.0 — Setup & Scaffold
+Completed: 2026-09-08. 1 phase, 6 of 7 requirements delivered (REQ-004 blocked on VPS provisioning). See `.planning/milestones/v1.0-ROADMAP.md` for full details.
 
-### Tasks
+---
 
-| REQ-ID | Task | Success Criteria |
-|--------|------|-----------------|
-| REQ-002 | Create `.gitignore` | `.gitignore` covers `.env`, `vendor/`, `writable/`, `.opencode/`, IDE configs |
-| REQ-001 | Scaffold CI4 via Composer | `composer create-project codeigniter4/appstarter` completes without errors |
-| REQ-007 | Configure Git remote | `git push origin master` succeeds |
-| REQ-003 | Verify `php spark serve` | App accessible at `localhost:8080` |
-| REQ-005 | Create multilingual directory structure | `app/Views/pages/{halaman}/{bahasa}.md` dirs exist for all 6 languages |
-| REQ-006 | Verify CI4 + PHP 8.4 + OpenLitespeed compatibility | No compatibility errors, routing works |
-| REQ-004 | Test VPS deploy pipeline | `git pull origin master` works on VPS, app serves correctly |
+## v2.0 — Skeleton Pages & Design Integration
 
-### Dependencies
-1. `.gitignore` (REQ-002) → before any code is written
-2. CI4 scaffold (REQ-001) → before all other tasks
-3. Git remote (REQ-007) → before VPS deploy (REQ-004)
-4. `php spark serve` (REQ-003) → before VPS deploy (REQ-004)
+### Phase 1: Multilingual Routing & Static Page Templates ✓ Complete (2026-09-09)
 
-### Timeline
+#### Phase 1 Deliverable
+CI4 app serves skeleton pages with multilingual routing — all 8 pages accessible in all 6 languages via URL path (`/id/`, `/en/`, etc.). Rendering pipeline switched from pre-render markdown to CI4 view rendering.
+
+#### Tasks
+
+| REQ-ID | Task | Success Criteria | Status |
+|--------|------|-----------------|--------|
+| REQ-008 | Implement multilingual routing | Routes handle `/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/` URL segments; locale filter validates against supported list; invalid locales redirect to `/id/` with HTTP 302 | ✓ Complete |
+| REQ-009 | Create static page templates | 8 skeleton pages render with consistent layout (header, content, footer) via CI4 view rendering; about page added at `/id/tentang`; layout bug fixed (`renderSection`); navbar language switcher uses `localeUrl()` | ✓ Complete |
+| REQ-010 | Apply design.md tokens and components | CSS custom properties from design.md applied; Revolut Design System 2.0 components (buttons, cards, nav, forms) implemented; DesignSync extended with typography and elevation tokens; pages.css uses `var(--*)` references | ✓ Complete |
+
+#### Dependencies
+1. REQ-008 (multilingual routing) → before REQ-009 (pages need locale-aware routing)
+2. REQ-010 (design integration) → before REQ-009 (templates need design tokens)
+3. All three are interdependent — implement together
+
+#### Timeline
 - Phase 1: 2-3 days (solo, prototype quality)
 
-### Risks
-- OpenLitespeed rewrite rules — CI4 `.htaccess` should work, needs validation on VPS
-- PHP 8.4 + CI4 compatibility — CI4 v4.7.4 requires PHP ^8.2, PHP 8.4 satisfies this
-- VPS provisioning not yet started — blocks REQ-004
+#### Risks
+- design.md may receive updates from OpenDesign before v3 — templates should be easy to update
+- OpenLitespeed page cache may serve wrong locale's cached page — validate during testing (CI4 `$this->cachePage(3600)` + OpenLitespeed two-layer caching implemented)
+- `{locale}` is a CI4 reserved placeholder — cannot use as custom regex
+- `SQLite3` PHP extension not available for database tests — infrastructure issue, not a code issue
 
 ---
 
-## v2 Candidates (Next Milestone)
+## Out of Scope (v2.0)
 
-| REQ-ID | Feature | Phase |
-|--------|---------|-------|
-| REQ-008 | Multilingual routing | Phase 2 |
-| REQ-009 | Static page templates | Phase 2 |
-| REQ-010 | Design integration | Phase 3 (blocked by design.md) |
-
----
-
-## Out of Scope (v1)
-
-- Design integration (design.md pending)
-- Contact form / email
-- CMS / admin panel
-- Portfolio / IR content
-- Database logic
-- User authentication
-- Blog / news
+- Contact form / email (Phase 4)
+- Database / SQLite (Phase 4)
+- Admin panel
+- Portfolio / IR content creation (placeholder only)
+- VPS deployment (REQ-004 still blocked)
+- Design iteration (design.md frozen after skeleton)
+- Content writing (placeholder only)

@@ -38,6 +38,7 @@
         "sort-packages": true
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "post-install-cmd": ["php spark design:sync"]
     }
 }

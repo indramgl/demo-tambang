@@ -1,0 +1,72 @@
+/* === Tablet (720px) === */
+@media (max-width: 720px) {
+  .container {
+    padding-left: var(--container-gutter-tablet, 28px);
+    padding-right: var(--container-gutter-tablet, 28px);
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    letter-spacing: -0.32px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .portfolio-filter {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+}
+
+/* === Mobile Small (400px) === */
+@media (max-width: 400px) {
+  .container {
+    padding-left: var(--container-gutter-phone, 18px);
+    padding-right: var(--container-gutter-phone, 18px);
+  }
+
+  .hero-title {
+    font-size: 1.5rem;
+    letter-spacing: -0.24px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-filter {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 0.875rem;
+  }
+
+  .section {
+    padding-top: 52px;
+    padding-bottom: 52px;
+  }
+}
