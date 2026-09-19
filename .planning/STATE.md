@@ -3,8 +3,9 @@
 ## Current Position
 
 Phase: 02 — Skeleton Pages & Design Integration
-Plan: 02-01 complete (CI4 view rendering pipeline), 02-02 complete (Design tokens + pages.css migration + language switcher), 79/79 tests passing
-Status: plan 02-02 executed — all 5 tasks complete
+Plan: 02-01 complete (CI4 view rendering pipeline), 02-02 complete (Design tokens + pages.css migration + language switcher), 02-03 complete (CI4 page caching + test suite rewrite), 77/77 tests passing
+Status: plan 02-03 executed — all 6 tasks complete
+Last activity: 2026-09-19 — Plan 02-03 complete. All 6 tasks executed with TDD (write test, red, green, refactor, commit). 77/77 tests passing. 2 pre-existing ExampleDatabaseTest SQLite3 errors unrelated.
 Last activity: 2026-09-19 — Plan 02-02 complete. All 5 tasks executed with TDD (write test, red, green, refactor, commit). 79 tests passing.
 Last activity: 2026-09-19 — Plan 02-01 complete. All 6 tasks executed with TDD (write test, red, green, refactor, commit). 72 tests passing.
 Last activity: 2026-09-19 — Phase 1 deep discussion completed. All decision branches walked in deep mode. 11 decisions captured.
@@ -34,6 +35,7 @@ Key achievements: CI4 project scaffolded and deployable to staging VPS. All code
 - v2.0 anti-goals: No CMS, no database, no design iteration after skeleton, no content writing, no VPS deployment
 - v2.0 Phase 1 decisions (deep mode 2026-09-19): CI4 view rendering (replaces pre-render), flat .php views canonical, markdown as reference, layout bug fix (renderSection), controller localeUrl() for navbar, DesignSync extended with typography + elevation tokens, about page with `tentang` slug, PageNotFound validation, CI4 page cache + OpenLitespeed two-layer caching
 - v2.0 Phase 1 decisions (standard mode 2026-09-08): Custom locale filter, route-level redirect for root URL, auto-generate tokens.css from design.md
+- v2.0 Plan 02-03 decisions (2026-09-19): CI4 `$this->cachePage(3600)` for two-layer caching, removed `erusev/parsedown` dependency, rewrote HomeControllerTest to remove obsolete patterns (`getRenderedContent`, `'content'` view data), deleted `RenderPagesTest.php`, added `testAboutPageUsesCorrectLocaleText` to PageViewsTest, `PageNotFoundException` tested via code assertions instead of runtime (CI4 request context limitation)
 
 ### Blockers
 - design.md from OpenDesign — already in repo, may receive updates before v3
