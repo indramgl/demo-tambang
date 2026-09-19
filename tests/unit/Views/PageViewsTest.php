@@ -110,4 +110,21 @@ final class PageViewsTest extends CIUnitTestCase
         $content = file_get_contents($viewFile);
         $this->assertStringContainsString('Tentang Kami', $content);
     }
+
+    public function testAboutPageUsesCorrectLocaleText(): void
+    {
+        $viewFile = APPPATH . 'Views/pages/about.php';
+        $this->assertFileExists($viewFile);
+        $content = file_get_contents($viewFile);
+        $this->assertStringContainsString(
+            "esc(\$locale) === 'id' ? 'Tentang Kami' : 'About Us'",
+            $content,
+            'about.php must contain locale-conditional text for About Us'
+        );
+        $this->assertStringContainsString(
+            "esc(\$locale) === 'id' ? 'Visi Misi' : 'Vision & Mission'",
+            $content,
+            'about.php must contain locale-conditional text for Vision & Mission'
+        );
+    }
 }
