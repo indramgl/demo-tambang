@@ -172,4 +172,43 @@ final class LayoutTest extends CIUnitTestCase
             'footer.php must contain copyright text'
         );
     }
+
+    public function testTentangRouteExists(): void
+    {
+        $routesFile = APPPATH . 'Config/Routes.php';
+        $this->assertFileExists($routesFile);
+        $content = file_get_contents($routesFile);
+        $this->assertStringContainsString(
+            "\$routes->get('tentang', 'Home::page/about')",
+            $content,
+            'Routes.php must have tentative route for about page'
+        );
+    }
+
+    public function testRenderPagesCommandDoesNotExist(): void
+    {
+        $commandFile = APPPATH . 'Commands/RenderPages.php';
+        $this->assertFileDoesNotExist(
+            $commandFile,
+            'RenderPages.php must not exist (obsolete pre-render pipeline removed)'
+        );
+    }
+
+    public function testAboutSubdirectoriesDoNotExist(): void
+    {
+        $aboutDir = APPPATH . 'Views/pages/about/';
+        $this->assertDirectoryDoesNotExist(
+            $aboutDir,
+            'app/Views/pages/about/ subdirectories must not exist'
+        );
+    }
+
+    public function testComposerPostInstallOnlyDesignSync(): void
+    {
+        $composerFile = ROOTPATH . 'composer.json';
+        $this->assertFileExists($composerFile);
+        $content = file_get_contents($composerFile);
+        $this->assertStringContainsString('"php spark design:sync"', $content);
+        $this->assertStringNotContainsString('render:pages', $content);
+    }
 }
