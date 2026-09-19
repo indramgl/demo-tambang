@@ -51,10 +51,83 @@
         </style>
     </head>
     <body>
-        <h2>Example Database</h2>
+        <h2>Css Files (Tests\Unit\Css\CssFiles)</h2>
         <ul>
-            <li class="defect">Model find all</li>
-            <li class="defect">Soft delete leaves row</li>
+            <li class="success">Main css exists</li>
+            <li class="success">Components css exists</li>
+            <li class="success">Pages css exists</li>
+            <li class="success">Responsive css exists</li>
+            <li class="success">Tokens css exists</li>
+            <li class="success">Main css imports tokens css</li>
+            <li class="success">Main css contains reset</li>
+            <li class="success">Main css contains container</li>
+            <li class="success">Components css contains button styles</li>
+            <li class="success">Components css contains card styles</li>
+            <li class="success">Components css contains nav styles</li>
+            <li class="success">Components css contains form styles</li>
+            <li class="success">Components css uses var tokens</li>
+            <li class="success">Responsive css has 720px breakpoint</li>
+            <li class="success">Responsive css has 400px breakpoint</li>
+            <li class="success">Tokens css has root block</li>
+            <li class="success">No hardcoded hex in css files</li>
+        </ul>
+        <h2>Design Sync (Tests\Unit\Commands\DesignSync)</h2>
+        <ul>
+            <li class="success">Design sync command exists</li>
+            <li class="success">Design sync generates tokens css</li>
+            <li class="success">Design sync extracts typography tokens</li>
+            <li class="success">Design sync extracts elevation tokens</li>
+            <li class="success">Design sync has typography and elevation methods</li>
+        </ul>
+        <h2>Home Controller (Tests\Unit\Controllers\HomeController)</h2>
+        <ul>
+            <li class="success">Home controller exists</li>
+            <li class="success">Page method exists</li>
+            <li class="success">Page map contains all pages</li>
+            <li class="success">Index method delegates to page</li>
+            <li class="success">Page method returns view with correct data</li>
+            <li class="success">Page method throws page not found for unknown slug</li>
+            <li class="success">Page method has locale url</li>
+            <li class="success">Locale url uses uri set segment</li>
+            <li class="success">Locale url does not use ltrim path</li>
+            <li class="success">Page uses cache page 3600</li>
+            <li class="success">Navbar uses locale urls array</li>
+            <li class="success">Main hreflang uses locale urls</li>
+        </ul>
+        <h2>Layout (Tests\Unit\Views\Layout)</h2>
+        <ul>
+            <li class="success">Main layout exists</li>
+            <li class="success">Main layout has navbar include</li>
+            <li class="success">Main layout has content area</li>
+            <li class="success">Main layout has footer include</li>
+            <li class="success">Main layout uses esc locale</li>
+            <li class="success">Main layout uses base url stylesheet</li>
+            <li class="success">Main layout uses render section</li>
+            <li class="success">Main layout does not use content variable</li>
+            <li class="success">Main layout no ltrim service uri</li>
+            <li class="success">Main layout hreflang uses locale urls</li>
+            <li class="success">Navbar exists</li>
+            <li class="success">Navbar has all six locale links</li>
+            <li class="success">Navbar uses esc locale</li>
+            <li class="success">Navbar uses locale urls</li>
+            <li class="success">Navbar no ltrim service uri</li>
+            <li class="success">Footer exists</li>
+            <li class="success">Footer has copyright</li>
+            <li class="success">Tentang route exists</li>
+            <li class="success">Render pages command does not exist</li>
+            <li class="success">About subdirectories do not exist</li>
+            <li class="success">Composer post install only design sync</li>
+        </ul>
+        <h2>Page Views (Tests\Unit\Views\PageViews)</h2>
+        <ul>
+            <li class="success">All page views exist</li>
+            <li class="success">Each page extends main layout</li>
+            <li class="success">Each page has content section</li>
+            <li class="success">Each page uses esc title</li>
+            <li class="success">Each page uses esc locale</li>
+            <li class="success">No hardcoded locale in output</li>
+            <li class="success">About page has tentang content</li>
+            <li class="success">About page uses correct locale text</li>
         </ul>
     </body>
 </html>

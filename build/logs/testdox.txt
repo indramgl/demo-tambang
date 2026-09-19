@@ -1,4 +1,73 @@
-Example Database
- [ ] Model find all
- [ ] Soft delete leaves row
+Css Files (Tests\Unit\Css\CssFiles)
+ [x] Main css exists
+ [x] Components css exists
+ [x] Pages css exists
+ [x] Responsive css exists
+ [x] Tokens css exists
+ [x] Main css imports tokens css
+ [x] Main css contains reset
+ [x] Main css contains container
+ [x] Components css contains button styles
+ [x] Components css contains card styles
+ [x] Components css contains nav styles
+ [x] Components css contains form styles
+ [x] Components css uses var tokens
+ [x] Responsive css has 720px breakpoint
+ [x] Responsive css has 400px breakpoint
+ [x] Tokens css has root block
+ [x] No hardcoded hex in css files
+
+Design Sync (Tests\Unit\Commands\DesignSync)
+ [x] Design sync command exists
+ [x] Design sync generates tokens css
+ [x] Design sync extracts typography tokens
+ [x] Design sync extracts elevation tokens
+ [x] Design sync has typography and elevation methods
+
+Home Controller (Tests\Unit\Controllers\HomeController)
+ [x] Home controller exists
+ [x] Page method exists
+ [x] Page map contains all pages
+ [x] Index method delegates to page
+ [x] Page method returns view with correct data
+ [x] Page method throws page not found for unknown slug
+ [x] Page method has locale url
+ [x] Locale url uses uri set segment
+ [x] Locale url does not use ltrim path
+ [x] Page uses cache page 3600
+ [x] Navbar uses locale urls array
+ [x] Main hreflang uses locale urls
+
+Layout (Tests\Unit\Views\Layout)
+ [x] Main layout exists
+ [x] Main layout has navbar include
+ [x] Main layout has content area
+ [x] Main layout has footer include
+ [x] Main layout uses esc locale
+ [x] Main layout uses base url stylesheet
+ [x] Main layout uses render section
+ [x] Main layout does not use content variable
+ [x] Main layout no ltrim service uri
+ [x] Main layout hreflang uses locale urls
+ [x] Navbar exists
+ [x] Navbar has all six locale links
+ [x] Navbar uses esc locale
+ [x] Navbar uses locale urls
+ [x] Navbar no ltrim service uri
+ [x] Footer exists
+ [x] Footer has copyright
+ [x] Tentang route exists
+ [x] Render pages command does not exist
+ [x] About subdirectories do not exist
+ [x] Composer post install only design sync
+
+Page Views (Tests\Unit\Views\PageViews)
+ [x] All page views exist
+ [x] Each page extends main layout
+ [x] Each page has content section
+ [x] Each page uses esc title
+ [x] Each page uses esc locale
+ [x] No hardcoded locale in output
+ [x] About page has tentang content
+ [x] About page uses correct locale text
 
