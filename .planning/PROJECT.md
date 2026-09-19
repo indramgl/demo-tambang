@@ -2,28 +2,30 @@
 
 ## Overview
 
-Website company profile untuk **PT Indah Tambang Raya Semesta** menggunakan **PHP CodeIgniter 4**. Statis, tanpa CMS/database (SQLite hanya jika diperlukan). Deployment ke cloud platform (Vercel/Cloudflare Pages) dengan serverless architecture.
+Website company profile untuk **PT Indah Tambang Raya Semesta** menggunakan **PHP CodeIgniter 4**. Statis, tanpa CMS/database (SQLite hanya jika diperlukan). Deployment ke VPS traditional (OpenLitespeed + PHP-FPM).
 
 ## Halaman
 
-1. Sejarah
-2. Visi-misi
-3. Layanan dan Product
-4. Kontak
-5. Portofolio
-6. Investor Relation
+1. Beranda (home)
+2. Tentang (about)
+3. Sejarah (history)
+4. Visi-misi (vision-mission)
+5. Layanan dan Product (services)
+6. Kontak (contact)
+7. Portofolio (portfolio)
+8. Investor Relation (investor)
 
 ## Teknologi
 
-- **Backend:** PHP CodeIgniter 4
+- **Backend:** PHP CodeIgniter 4 v4.7.4
 - **Dependency Manager:** Composer
-- **Database:** SQLite (jika dibutuhkan)
+- **Database:** SQLite (jika diperlukan)
 - **Deployment:** VPS traditional (OpenLitespeed + PHP-FPM)
-- **Design:** design.md (akan disediakan oleh OpenDesign)
+- **Design:** design.md dari OpenDesign ✓ Applied
 
 ## Multilingual
 
-Website akan tersedia dalam **6 bahasa internasional**:
+Website tersedia dalam **6 bahasa internasional**:
 1. Indonesia (utama)
 2. Inggris
 3. Mandarin
@@ -35,50 +37,38 @@ Website akan tersedia dalam **6 bahasa internasional**:
 
 - Konten statis → tidak butuh CMS
 - Tanpa database relasional → SQLite hanya jika diperlukan
-- Serverless deployment → tidak applicable, pakai VPS
-- Design dipisah → design.md handled oleh OpenDesign
+- Deployment ke VPS traditional (OpenLitespeed + PHP-FPM)
+- Design dipisah → design.md handled oleh OpenDesign ✓ Applied
 - v1.0 shipped → 6/7 requirements met, REQ-004 (VPS deploy) blocked on VPS provisioning
+- v2.0 shipped → 3/3 requirements met (REQ-008 through REQ-010)
 
 ## Batasan
 
 - Tidak ada admin panel
 - Tidak ada CMS dinamis
 - Design mengikuti design.md dari OpenDesign
+- Tidak ada design iteration after skeleton
+- Tidak ada content writing
+- Tidak ada VPS deployment (blocked)
 
 ## Open Questions
 
 - Portfolio & Investor Relation: format konten (PDF, gambar, table)?
+- Design.md updates from OpenDesign before v3
+- Contact form / email (Phase 4)
 
-## Current Milestone: v1.0 — Setup & Scaffold ✓ Shipped
+## Milestone History
 
-**Goal:** CI4 project scaffolded via Composer with working routing and deployable to staging VPS.
+### v1.0 — Setup & Scaffold ✓ Shipped (2026-09-08)
+6/7 requirements delivered. REQ-004 blocked on VPS provisioning.
 
-**Delivered (v1.0):**
-- REQ-001: CI4 project scaffolded via Composer ✓
-- REQ-002: `.gitignore` created ✓
-- REQ-003: Local dev server (`php spark serve`) working ✓
-- REQ-005: Multilingual directory structure created ✓
-- REQ-006: CI4 + PHP 8.4 + OpenLitespeed compatibility verified ✓
-- REQ-007: Git remote configured, push to master works ✓
+### v2.0 — Skeleton Pages & Design Integration ✓ Shipped (2026-09-19)
+3/3 requirements delivered (REQ-008, REQ-009, REQ-010). 77/77 unit tests passing.
 
-**Blocked:**
-- REQ-004: VPS deploy pipeline — blocked on VPS provisioning
+## Current Milestone: v3.0 (TBD)
 
-**Anti-goals:** No design integration, no contact form, no CMS, no admin panel, no database logic, no portfolio/IR content.
+**Goal:** TBD — next milestone planning required.
 
----
+**Anti-goals:** To be defined.
 
-## Current Milestone: v2.0 — Skeleton Pages & Design Integration
-
-**Goal:** Create skeleton pages for all agreed pages following design.md, with multilingual routing, static page templates, and design integration (REQ-008 through REQ-010).
-
-**Target features:**
-- Multilingual routing (`/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/`) — REQ-008
-- Static page templates rendering markdown as HTML with consistent layout — REQ-009
-- Design integration: apply design.md tokens, components, and layout to CI4 views — REQ-010
-- 7 skeleton pages (home, history, vision-mission, services, contact, portfolio, investor relation)
-
-**Anti-goals:** No CMS, no database, no design iteration after skeleton, no content writing, no VPS deployment.
-
-Last updated: 2026-09-08
-
+Last updated: 2026-09-19

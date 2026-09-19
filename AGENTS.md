@@ -166,9 +166,9 @@ This project uses **learnship**. Key facts:
 
 <!-- Updated automatically by platform workflows -->
 
-**Milestone:** v2.0 — Skeleton Pages & Design Integration ✓ Complete
-**Phase:** 02 — Skeleton Pages & Design Integration ✓ complete → Phase 03 (TBD)
-**Status:** verifying
+**Milestone:** v2.0 — Skeleton Pages & Design Integration ✓ Shipped
+**Phase:** —
+**Status:** milestone complete — ready for next milestone
 **Last updated:** 2026-09-19
 
 ---

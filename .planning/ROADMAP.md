@@ -1,4 +1,4 @@
-# ROADMAP.md — v2.0 Skeleton Pages & Design Integration
+# ROADMAP.md — PT Indah Tambang Raya Semesta
 
 ## Completed Milestones
 
@@ -7,34 +7,13 @@ Completed: 2026-09-08. 1 phase, 6 of 7 requirements delivered (REQ-004 blocked o
 
 ---
 
-## v2.0 — Skeleton Pages & Design Integration
+### v2.0 — Skeleton Pages & Design Integration ✓ Complete (2026-09-19)
 
-### Phase 1: Multilingual Routing & Static Page Templates ✓ Complete (2026-09-09)
+Completed: 2026-09-19. 1 phase (02-skeleton-pages), 3 requirements delivered (REQ-008, REQ-009, REQ-010). See `.planning/milestones/v2.0-ROADMAP.md` for full details.
 
-#### Phase 1 Deliverable
-CI4 app serves skeleton pages with multilingual routing — all 8 pages accessible in all 6 languages via URL path (`/id/`, `/en/`, etc.). Rendering pipeline switched from pre-render markdown to CI4 view rendering.
+#### Phase 02 — Skeleton Pages & Design Integration ✓ Complete
 
-#### Tasks
-
-| REQ-ID | Task | Success Criteria | Status |
-|--------|------|-----------------|--------|
-| REQ-008 | Implement multilingual routing | Routes handle `/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/` URL segments; locale filter validates against supported list; invalid locales redirect to `/id/` with HTTP 302 | ✓ Complete |
-| REQ-009 | Create static page templates | 8 skeleton pages render with consistent layout (header, content, footer) via CI4 view rendering; about page added at `/id/tentang`; layout bug fixed (`renderSection`); navbar language switcher uses `localeUrl()` | ✓ Complete |
-| REQ-010 | Apply design.md tokens and components | CSS custom properties from design.md applied; Revolut Design System 2.0 components (buttons, cards, nav, forms) implemented; DesignSync extended with typography and elevation tokens; pages.css uses `var(--*)` references | ✓ Complete |
-
-#### Dependencies
-1. REQ-008 (multilingual routing) → before REQ-009 (pages need locale-aware routing)
-2. REQ-010 (design integration) → before REQ-009 (templates need design tokens)
-3. All three are interdependent — implement together
-
-#### Timeline
-- Phase 1: 2-3 days (solo, prototype quality)
-
-#### Risks
-- design.md may receive updates from OpenDesign before v3 — templates should be easy to update
-- OpenLitespeed page cache may serve wrong locale's cached page — validate during testing (CI4 `$this->cachePage(3600)` + OpenLitespeed two-layer caching implemented)
-- `{locale}` is a CI4 reserved placeholder — cannot use as custom regex
-- `SQLite3` PHP extension not available for database tests — infrastructure issue, not a code issue
+All 3 requirements satisfied: multilingual routing (REQ-008), 8 skeleton pages with CI4 view rendering (REQ-009), design tokens including typography and elevation (REQ-010). 77/77 unit tests passing. DesignSync extended with typography and elevation tokens. Pre-render pipeline removed in favor of CI4 native `view()` rendering.
 
 ---
 
@@ -47,3 +26,28 @@ CI4 app serves skeleton pages with multilingual routing — all 8 pages accessib
 - VPS deployment (REQ-004 still blocked)
 - Design iteration (design.md frozen after skeleton)
 - Content writing (placeholder only)
+
+## Upcoming Milestones
+
+### v3.0 (TBD)
+- Contact form with Postmark email
+- Database/SQLite for contact form storage
+- Portfolio & Investor Relation content pages
+- Design iteration based on v2.0 feedback
+
+---
+
+## Requirements Index
+
+| REQ-ID | Description | Status | Milestone |
+|--------|-------------|--------|-----------|
+| REQ-001 | CI4 project scaffolded via Composer | ✓ Delivered | v1.0 |
+| REQ-002 | .gitignore created | ✓ Delivered | v1.0 |
+| REQ-003 | Local dev server working | ✓ Delivered | v1.0 |
+| REQ-004 | VPS deploy pipeline | Blocked | v1.0 |
+| REQ-005 | Multilingual directory structure | ✓ Delivered | v1.0 |
+| REQ-006 | CI4 + PHP + OpenLitespeed compatibility | ✓ Delivered | v1.0 |
+| REQ-007 | Git remote configured | ✓ Delivered | v1.0 |
+| REQ-008 | Multilingual routing | ✓ Delivered | v2.0 |
+| REQ-009 | Static page templates | ✓ Delivered | v2.0 |
+| REQ-010 | Design integration | ✓ Delivered | v2.0 |
