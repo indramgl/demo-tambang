@@ -17,6 +17,7 @@ final class PageViewsTest extends CIUnitTestCase
         'contact',
         'portfolio',
         'investor',
+        'about',
     ];
 
     public function testAllPageViewsExist(): void
@@ -100,5 +101,13 @@ final class PageViewsTest extends CIUnitTestCase
                 "{$page}.php must not echo \$locale directly without esc()"
             );
         }
+    }
+
+    public function testAboutPageHasTentangContent(): void
+    {
+        $viewFile = APPPATH . 'Views/pages/about.php';
+        $this->assertFileExists($viewFile);
+        $content = file_get_contents($viewFile);
+        $this->assertStringContainsString('Tentang Kami', $content);
     }
 }
