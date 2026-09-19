@@ -2,107 +2,53 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Exceptions\PageNotFoundException;
+
 class Home extends BaseController
 {
+    private const PAGE_MAP = [
+        'home'          => ['Beranda', 'home'],
+        'history'       => ['Sejarah', 'history'],
+        'vision-mission'=> ['Visi & Misi', 'vision-mission'],
+        'services'      => ['Layanan', 'services'],
+        'contact'       => ['Kontak', 'contact'],
+        'portfolio'     => ['Portofolio', 'portfolio'],
+        'investor'      => ['Investor', 'investor'],
+        'about'          => ['Tentang Kami', 'about'],
+    ];
+
     public function index(): string
     {
-        $locale = $this->request->getSegment(1) ?? 'id';
-        $title = 'Beranda';
-        $content = $this->getRenderedContent('home', $locale);
-
-        return view('pages/home', [
-            'title' => $title,
-            'locale' => $locale,
-            'content' => $content,
-        ]);
+        return $this->page('home');
     }
 
-    public function history(): string
+    public function page(string $slug = 'home'): string
     {
         $locale = $this->request->getSegment(1) ?? 'id';
-        $title = 'Sejarah';
-        $content = $this->getRenderedContent('history', $locale);
 
-        return view('pages/history', [
-            'title' => $title,
-            'locale' => $locale,
-            'content' => $content,
-        ]);
-    }
-
-    public function visionMission(): string
-    {
-        $locale = $this->request->getSegment(1) ?? 'id';
-        $title = 'Visi & Misi';
-        $content = $this->getRenderedContent('vision-mission', $locale);
-
-        return view('pages/vision-mission', [
-            'title' => $title,
-            'locale' => $locale,
-            'content' => $content,
-        ]);
-    }
-
-    public function services(): string
-    {
-        $locale = $this->request->getSegment(1) ?? 'id';
-        $title = 'Layanan';
-        $content = $this->getRenderedContent('services', $locale);
-
-        return view('pages/services', [
-            'title' => $title,
-            'locale' => $locale,
-            'content' => $content,
-        ]);
-    }
-
-    public function contact(): string
-    {
-        $locale = $this->request->getSegment(1) ?? 'id';
-        $title = 'Kontak';
-        $content = $this->getRenderedContent('contact', $locale);
-
-        return view('pages/contact', [
-            'title' => $title,
-            'locale' => $locale,
-            'content' => $content,
-        ]);
-    }
-
-    public function portfolio(): string
-    {
-        $locale = $this->request->getSegment(1) ?? 'id';
-        $title = 'Portofolio';
-        $content = $this->getRenderedContent('portfolio', $locale);
-
-        return view('pages/portfolio', [
-            'title' => $title,
-            'locale' => $locale,
-            'content' => $content,
-        ]);
-    }
-
-    public function investor(): string
-    {
-        $locale = $this->request->getSegment(1) ?? 'id';
-        $title = 'Investor Relation';
-        $content = $this->getRenderedContent('investor', $locale);
-
-        return view('pages/investor', [
-            'title' => $title,
-            'locale' => $locale,
-            'content' => $content,
-        ]);
-    }
-
-    private function getRenderedContent(string $page, string $locale): string
-    {
-        $filePath = FCPATH . 'content/' . $page . '/' . strtolower($locale) . '.html';
-
-        if (is_file($filePath)) {
-            return file_get_contents($filePath);
+        if (! isset(self::PAGE_MAP[$slug])) {
+            throw PageNotFoundException::forPageNotFound();
         }
 
-        return '';
+        [$title, $view] = self::PAGE_MAP[$slug];
+
+        $localeUrls = [];
+        foreach (['id', 'en', 'zh', 'fr', 'es', 'ja'] as $loc) {
+            $localeUrls[$loc] = $this->localeUrl($loc);
+        }
+
+        return view("pages/{$view}", [
+            'title' => $title,
+            'locale' => $locale,
+            'localeUrls' => $localeUrls,
+        ]);
+    }
+
+    protected function localeUrl(string $locale): string
+    {
+        $uri = service('uri');
+        $uri->setSegment(1, $locale);
+
+        return base_url($uri->getPath());
     }
 }

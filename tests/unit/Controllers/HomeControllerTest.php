@@ -15,125 +15,104 @@ final class HomeControllerTest extends CIUnitTestCase
         $this->assertFileExists($controllerFile, 'Home.php controller must exist');
     }
 
-    public function testHomeControllerHasIndexMethod(): void
+    public function testPageMethodExists(): void
     {
         $controllerFile = APPPATH . 'Controllers/Home.php';
-        $this->assertFileExists($controllerFile);
         $content = file_get_contents($controllerFile);
         $this->assertStringContainsString(
-            'public function index()',
+            'public function page(string $slug',
             $content,
-            'Home.php must have index() method'
+            'Home.php must have page() method with slug parameter'
         );
     }
 
-    public function testHomeControllerHasHistoryMethod(): void
+    public function testPageMapContainsAllPages(): void
     {
         $controllerFile = APPPATH . 'Controllers/Home.php';
-        $this->assertFileExists($controllerFile);
         $content = file_get_contents($controllerFile);
-        $this->assertStringContainsString(
-            'public function history()',
-            $content,
-            'Home.php must have history() method'
-        );
-    }
-
-    public function testHomeControllerHasVisionMissionMethod(): void
-    {
-        $controllerFile = APPPATH . 'Controllers/Home.php';
-        $this->assertFileExists($controllerFile);
-        $content = file_get_contents($controllerFile);
-        $this->assertStringContainsString(
-            'public function visionMission()',
-            $content,
-            'Home.php must have visionMission() method'
-        );
-    }
-
-    public function testHomeControllerHasServicesMethod(): void
-    {
-        $controllerFile = APPPATH . 'Controllers/Home.php';
-        $this->assertFileExists($controllerFile);
-        $content = file_get_contents($controllerFile);
-        $this->assertStringContainsString(
-            'public function services()',
-            $content,
-            'Home.php must have services() method'
-        );
-    }
-
-    public function testHomeControllerHasContactMethod(): void
-    {
-        $controllerFile = APPPATH . 'Controllers/Home.php';
-        $this->assertFileExists($controllerFile);
-        $content = file_get_contents($controllerFile);
-        $this->assertStringContainsString(
-            'public function contact()',
-            $content,
-            'Home.php must have contact() method'
-        );
-    }
-
-    public function testHomeControllerHasPortfolioMethod(): void
-    {
-        $controllerFile = APPPATH . 'Controllers/Home.php';
-        $this->assertFileExists($controllerFile);
-        $content = file_get_contents($controllerFile);
-        $this->assertStringContainsString(
-            'public function portfolio()',
-            $content,
-            'Home.php must have portfolio() method'
-        );
-    }
-
-    public function testHomeControllerHasInvestorMethod(): void
-    {
-        $controllerFile = APPPATH . 'Controllers/Home.php';
-        $this->assertFileExists($controllerFile);
-        $content = file_get_contents($controllerFile);
-        $this->assertStringContainsString(
-            'public function investor()',
-            $content,
-            'Home.php must have investor() method'
-        );
-    }
-
-    public function testEachMethodReturnsViewWithCorrectData(): void
-    {
-        $controllerFile = APPPATH . 'Controllers/Home.php';
-        $this->assertFileExists($controllerFile);
-        $content = file_get_contents($controllerFile);
-
-        // Each method should return view('pages/{page}', [...])
-        $methods = [
-            'index' => 'pages/home',
-            'history' => 'pages/history',
-            'visionMission' => 'pages/vision-mission',
-            'services' => 'pages/services',
-            'contact' => 'pages/contact',
-            'portfolio' => 'pages/portfolio',
-            'investor' => 'pages/investor',
-        ];
-
-        foreach ($methods as $method => $view) {
+        $pages = ['home', 'history', 'vision-mission', 'services', 'contact', 'portfolio', 'investor', 'about'];
+        foreach ($pages as $page) {
             $this->assertStringContainsString(
-                "view('{$view}'",
+                "'{$page}'",
                 $content,
-                "Home::{$method}() must return view('{$view}')"
+                "Home.php PAGE_MAP must contain '{$page}'"
             );
         }
     }
 
-    public function testEachMethodPassesTitleLocaleContent(): void
+    public function testPageMapHasEightEntries(): void
     {
         $controllerFile = APPPATH . 'Controllers/Home.php';
-        $this->assertFileExists($controllerFile);
         $content = file_get_contents($controllerFile);
+        $this->assertStringContainsString("'about'", $content);
+        // Verify 7 original + about = 8 entries by checking all expected keys exist
+        $pages = ['home', 'history', 'vision-mission', 'services', 'contact', 'portfolio', 'investor', 'about'];
+        foreach ($pages as $page) {
+            $this->assertStringContainsString("'" . $page . "'", $content);
+        }
+    }
 
-        // Each method should pass title, locale, and content to the view
+    public function testPageMethodReturnsViewWithoutContent(): void
+    {
+        $controllerFile = APPPATH . 'Controllers/Home.php';
+        $content = file_get_contents($controllerFile);
+        $this->assertStringContainsString('pages/', $content);
         $this->assertStringContainsString("'title'", $content);
         $this->assertStringContainsString("'locale'", $content);
-        $this->assertStringContainsString("'content'", $content);
+        $this->assertStringContainsString("'localeUrls'", $content);
+        $this->assertStringNotContainsString("'content'", $content);
+    }
+
+    public function testIndexMethodDelegatesToPage(): void
+    {
+        $controllerFile = APPPATH . 'Controllers/Home.php';
+        $content = file_get_contents($controllerFile);
+        $this->assertStringContainsString(
+            'return $this->page(',
+            $content,
+            'index() must delegate to page() method'
+        );
+    }
+
+    public function testPageMapHasCorrectViewMapping(): void
+    {
+        $controllerFile = APPPATH . 'Controllers/Home.php';
+        $content = file_get_contents($controllerFile);
+        $this->assertStringContainsString("'home'          => ['Beranda', 'home']", $content);
+        $this->assertStringContainsString("'history'       => ['Sejarah', 'history']", $content);
+        $this->assertStringContainsString("'vision-mission'=> ['Visi & Misi', 'vision-mission']", $content);
+    }
+
+    public function testNoGetRenderedContent(): void
+    {
+        $controllerFile = APPPATH . 'Controllers/Home.php';
+        $content = file_get_contents($controllerFile);
+        $this->assertStringNotContainsString(
+            'getRenderedContent',
+            $content,
+            'Controller must not have getRenderedContent method'
+        );
+    }
+
+    public function testPageMethodThrowsPageNotFoundException(): void
+    {
+        $controllerFile = APPPATH . 'Controllers/Home.php';
+        $content = file_get_contents($controllerFile);
+        $this->assertStringContainsString(
+            'PageNotFoundException',
+            $content,
+            'Controller must throw PageNotFoundException for unknown slugs'
+        );
+    }
+
+    public function testLocaleUrlMethodExists(): void
+    {
+        $controllerFile = APPPATH . 'Controllers/Home.php';
+        $content = file_get_contents($controllerFile);
+        $this->assertStringContainsString(
+            'protected function localeUrl',
+            $content,
+            'Controller must have localeUrl() method'
+        );
     }
 }
