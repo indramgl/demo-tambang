@@ -167,9 +167,9 @@ This project uses **learnship**. Key facts:
 <!-- Updated automatically by platform workflows -->
 
 **Milestone:** v2.0 — Skeleton Pages & Design Integration
-**Phase:** 1 — Multilingual Routing & Static Page Templates ✓ complete
-**Status:** verifying
-**Last updated:** 2026-09-09
+**Phase:** 02 — Skeleton Pages & Design Integration
+**Status:** planning
+**Last updated:** 2026-09-19
 
 ---
 
