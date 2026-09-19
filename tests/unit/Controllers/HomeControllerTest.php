@@ -115,4 +115,53 @@ final class HomeControllerTest extends CIUnitTestCase
             'Controller must have localeUrl() method'
         );
     }
+
+    public function testLocaleUrlUsesUriSetSegment(): void
+    {
+        $controllerFile = APPPATH . 'Controllers/Home.php';
+        $content = file_get_contents($controllerFile);
+        $this->assertStringContainsString(
+            "service('uri')",
+            $content,
+            'localeUrl() must use service(uri)'
+        );
+        $this->assertStringContainsString(
+            'setSegment(1, $locale)',
+            $content,
+            'localeUrl() must use setSegment(1, $locale) to swap locale'
+        );
+    }
+
+    public function testLocaleUrlDoesNotUseLtrimPath(): void
+    {
+        $controllerFile = APPPATH . 'Controllers/Home.php';
+        $content = file_get_contents($controllerFile);
+        $this->assertStringNotContainsString(
+            "ltrim(service('uri')->getPath()",
+            $content,
+            'localeUrl() must not use ltrim(service(uri)->getPath()) pattern'
+        );
+    }
+
+    public function testNavbarUsesLocaleUrlsArray(): void
+    {
+        $navbarFile = APPPATH . 'Views/layouts/navbar.php';
+        $content = file_get_contents($navbarFile);
+        $this->assertStringContainsString(
+            '$localeUrls as $lang => $url',
+            $content,
+            'navbar.php must use $localeUrls as $lang => $url pattern'
+        );
+    }
+
+    public function testMainHreflangUsesLocaleUrls(): void
+    {
+        $mainFile = APPPATH . 'Views/layouts/main.php';
+        $content = file_get_contents($mainFile);
+        $this->assertStringContainsString(
+            '$localeUrls as $lang => $url',
+            $content,
+            'main.php must use $localeUrls for hreflang tags'
+        );
+    }
 }
