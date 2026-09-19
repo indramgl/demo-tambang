@@ -53,4 +53,59 @@ final class DesignSyncTest extends CIUnitTestCase
             'tokens.css must have a :root block containing all tokens'
         );
     }
+
+    public function testDesignSyncExtractsTypographyTokens(): void
+    {
+        $tokensPath = FCPATH . 'assets/css/tokens.css';
+
+        if (file_exists($tokensPath)) {
+            unlink($tokensPath);
+        }
+
+        $output = shell_exec('php spark design:sync 2>&1');
+
+        $this->assertFileExists($tokensPath, 'tokens.css must be created');
+        $content = file_get_contents($tokensPath);
+
+        // Verify typography tokens are present
+        $this->assertStringContainsString('--font-display-mega-size', $content, 'tokens.css must contain --font-display-mega-size');
+        $this->assertStringContainsString('--font-display-hero-size', $content, 'tokens.css must contain --font-display-hero-size');
+        $this->assertStringContainsString('--font-section-heading-size', $content, 'tokens.css must contain --font-section-heading-size');
+        $this->assertStringContainsString('--font-body-size', $content, 'tokens.css must contain --font-body-size');
+        $this->assertStringContainsString('--font-caption-size', $content, 'tokens.css must contain --font-caption-size');
+
+        // Verify all 12 roles have size tokens
+        $this->assertStringContainsString('--font-display-mega-weight', $content, 'tokens.css must contain --font-display-mega-weight');
+        $this->assertStringContainsString('--font-display-hero-weight', $content, 'tokens.css must contain --font-display-hero-weight');
+        $this->assertStringContainsString('--font-display-mega-line-height', $content, 'tokens.css must contain --font-display-mega-line-height');
+        $this->assertStringContainsString('--font-display-mega-letter-spacing', $content, 'tokens.css must contain --font-display-mega-letter-spacing');
+    }
+
+    public function testDesignSyncExtractsElevationTokens(): void
+    {
+        $tokensPath = FCPATH . 'assets/css/tokens.css';
+
+        if (file_exists($tokensPath)) {
+            unlink($tokensPath);
+        }
+
+        $output = shell_exec('php spark design:sync 2>&1');
+
+        $this->assertFileExists($tokensPath, 'tokens.css must be created');
+        $content = file_get_contents($tokensPath);
+
+        // Verify elevation tokens are present
+        $this->assertStringContainsString('--shadow-none', $content, 'tokens.css must contain --shadow-none');
+        $this->assertStringContainsString('--shadow-focus', $content, 'tokens.css must contain --shadow-focus');
+        $this->assertStringContainsString('--shadow-raised', $content, 'tokens.css must contain --shadow-raised');
+    }
+
+    public function testDesignSyncHasTypographyAndElevationMethods(): void
+    {
+        $commandFile = APPPATH . 'Commands/DesignSync.php';
+        $content = file_get_contents($commandFile);
+
+        $this->assertStringContainsString('extractTypographyTokens', $content, 'DesignSync must have extractTypographyTokens method');
+        $this->assertStringContainsString('extractElevationTokens', $content, 'DesignSync must have extractElevationTokens method');
+    }
 }

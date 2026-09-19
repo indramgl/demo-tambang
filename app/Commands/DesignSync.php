@@ -78,6 +78,14 @@ class DesignSync extends BaseCommand
         $radiusProps = $this->extractTableTokens($content, '1.4', '/^--radius-/');
         $properties = array_merge($properties, $radiusProps);
 
+        // 4. Extract typography tokens from section 1.2 (Tipografi)
+        $typographyProps = $this->extractTypographyTokens($content);
+        $properties = array_merge($properties, $typographyProps);
+
+        // 5. Extract elevation tokens from section 1.5 (Elevasi)
+        $elevationProps = $this->extractElevationTokens($content);
+        $properties = array_merge($properties, $elevationProps);
+
         if (empty($properties)) {
             return null;
         }
@@ -182,5 +190,147 @@ class DesignSync extends BaseCommand
         }
 
         return $properties;
+    }
+
+    /**
+     * Extracts typography tokens from section 1.2 (Tipografi) of design.md.
+     * Each row generates 4 CSS custom properties: size, weight, line-height, letter-spacing.
+     *
+     * @return array<string, string> Map of CSS custom property name to value
+     */
+    private function extractTypographyTokens(string $content): array
+    {
+        $properties = [];
+
+        $sectionPattern = '/###\s*1\.2\s+Tipografi\s*\n(.*?)(?=\n###|\n---|$)/s';
+        if (! preg_match($sectionPattern, $content, $sectionMatch)) {
+            return $properties;
+        }
+
+        $sectionContent = $sectionMatch[1];
+        $lines = explode("\n", $sectionContent);
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '' || strpos($line, '|') === false) {
+                continue;
+            }
+            if (preg_match('/^[\|\s\-:]+$/', $line)) {
+                continue;
+            }
+
+            $cells = array_values(array_filter(array_map('trim', explode('|', $line))));
+            // Filter out empty cells from leading/trailing pipes
+            if (count($cells) < 6) {
+                continue;
+            }
+
+            $role = $cells[0];
+            // Convert role name to kebab-case for CSS custom property names
+            $roleKebab = $this->roleToKebab($role);
+
+            // Extract rem value from Ukuran cell (e.g., "136px (8.50rem)" → "8.50rem")
+            $ukuran = $cells[2];
+            if (preg_match('/\(([^)]+)\)/', $ukuran, $remMatch)) {
+                $sizeValue = $remMatch[1];
+            } else {
+                // Fallback: try to extract rem value directly
+                if (preg_match('/([\d.]+rem)/', $ukuran, $remMatch)) {
+                    $sizeValue = $remMatch[1];
+                } else {
+                    continue;
+                }
+            }
+
+            $weight = $cells[3];
+            $lineHeight = $cells[4];
+            $letterSpacing = $cells[5];
+
+            $properties["--font-{$roleKebab}-size"] = $sizeValue;
+            $properties["--font-{$roleKebab}-weight"] = $weight;
+            $properties["--font-{$roleKebab}-line-height"] = $lineHeight;
+            $properties["--font-{$roleKebab}-letter-spacing"] = $letterSpacing;
+        }
+
+        return $properties;
+    }
+
+    /**
+     * Extracts elevation tokens from section 1.5 (Elevasi) of design.md.
+     * Generates --shadow-none, --shadow-focus, --shadow-raised tokens.
+     *
+     * @return array<string, string> Map of CSS custom property name to value
+     */
+    private function extractElevationTokens(string $content): array
+    {
+        $properties = [];
+
+        $sectionPattern = '/###\s*1\.5\s+Elevasi\s*\n(.*?)(?=\n###|\n---|$)/s';
+        if (! preg_match($sectionPattern, $content, $sectionMatch)) {
+            return $properties;
+        }
+
+        $sectionContent = $sectionMatch[1];
+        $lines = explode("\n", $sectionContent);
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line === '' || strpos($line, '|') === false) {
+                continue;
+            }
+            if (preg_match('/^[\|\s\-:]+$/', $line)) {
+                continue;
+            }
+
+            $cells = array_values(array_filter(array_map('trim', explode('|', $line))));
+            if (count($cells) < 2) {
+                continue;
+            }
+
+            $level = strtolower($cells[0]);
+            $value = $cells[1];
+
+            // Map level names to token names
+            $tokenMap = [
+                'flat'   => 'none',
+                'focus'  => 'focus',
+                'raised' => 'raised',
+            ];
+
+            if (isset($tokenMap[$level])) {
+                $tokenName = '--shadow-' . $tokenMap[$level];
+                // Strip backticks from values
+                $value = str_replace('`', '', $value);
+                $properties[$tokenName] = $value;
+            }
+        }
+
+        return $properties;
+    }
+
+    /**
+     * Converts a design role name to kebab-case for CSS custom property names.
+     *
+     * @param string $role e.g. "Display Mega", "Nav / UI", "Body Semibold"
+     * @return string e.g. "display-mega", "nav-ui", "body-semibold"
+     */
+    private function roleToKebab(string $role): string
+    {
+        // Special case: "Caption / Meta" maps to just "caption"
+        if (trim($role) === 'Caption / Meta') {
+            return 'caption';
+        }
+
+        $kebab = strtolower($role);
+        // Replace "/" with "-" for roles like "Nav / UI"
+        $kebab = str_replace('/', '-', $kebab);
+        // Replace spaces with hyphens
+        $kebab = preg_replace('/\s+/', '-', $kebab);
+        // Collapse multiple hyphens
+        $kebab = preg_replace('/-+/', '-', $kebab);
+        // Trim leading/trailing hyphens
+        $kebab = trim($kebab, '-');
+
+        return $kebab;
     }
 }
