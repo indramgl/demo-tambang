@@ -129,18 +129,21 @@ final class LayoutTest extends CIUnitTestCase
         $this->assertFileExists($navbarFile, 'app/Views/layouts/navbar.php must exist');
     }
 
-    public function testNavbarHasAllSixLocaleLinks(): void
+public function testNavbarHasAllSixLocaleLinks(): void
     {
         $navbarFile = APPPATH . 'Views/layouts/navbar.php';
         $this->assertFileExists($navbarFile);
         $content = file_get_contents($navbarFile);
-        foreach (['id', 'en', 'zh', 'fr', 'es', 'ja'] as $locale) {
-            $this->assertStringContainsString(
-                "'{$locale}/'",
-                $content,
-                "navbar must have language switcher link for /{$locale}/"
-            );
-        }
+        $this->assertStringContainsString(
+            '$localeUrls',
+            $content,
+            'navbar must use $localeUrls array for all locale links'
+        );
+        $this->assertStringContainsString(
+            'foreach',
+            $content,
+            'navbar must iterate over localeUrls'
+        );
     }
 
     public function testNavbarUsesEscLocale(): void
@@ -152,6 +155,30 @@ final class LayoutTest extends CIUnitTestCase
             'esc($locale)',
             $content,
             'navbar.php must use esc($locale)'
+        );
+    }
+
+    public function testNavbarUsesLocaleUrls(): void
+    {
+        $navbarFile = APPPATH . 'Views/layouts/navbar.php';
+        $this->assertFileExists($navbarFile);
+        $content = file_get_contents($navbarFile);
+        $this->assertStringContainsString(
+            '$localeUrls',
+            $content,
+            'navbar.php must use $localeUrls for locale links'
+        );
+    }
+
+    public function testNavbarNoLtrimServiceUri(): void
+    {
+        $navbarFile = APPPATH . 'Views/layouts/navbar.php';
+        $this->assertFileExists($navbarFile);
+        $content = file_get_contents($navbarFile);
+        $this->assertStringNotContainsString(
+            "ltrim(service('uri')->getPath()",
+            $content,
+            'navbar.php must not use ltrim(service(\'uri\')->getPath())'
         );
     }
 
