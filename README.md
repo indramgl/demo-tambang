@@ -9,7 +9,7 @@ Company profile website for PT Indah Tambang Raya Semesta, built with PHP CodeIg
 - **Web Server:** OpenLitespeed + PHP-FPM
 - **Hosting:** VPS traditional (IDCloudhost)
 - **Multilingual:** 6 languages via URL path routing (`/id/`, `/en/`, `/zh/`, `/fr/`, `/es/`, `/ja/`)
-- **Content:** Static markdown pages rendered as HTML
+- **Content:** Flat PHP views rendered via CodeIgniter 4
 
 ## Quick Start
 
@@ -36,15 +36,15 @@ perusahaan-tambang/
 ├── writable/             # Writable directory
 ├── vendor/               # Composer dependencies
 ├── .planning/            # Planning artifacts
-├── design.md             # Design reference from OpenDesign (pending)
+├── design.md             # Design reference from OpenDesign ✓ Applied
 └── AGENTS.md             # AI agent configuration
 ```
 
 ## Status
 
-- **Milestone:** v1.0 — Setup & Scaffold
-- **Phase:** 1 — Setup & Scaffold
-- **Status:** Shipped
+- **Milestone:** v2.0 — Skeleton Pages & Design Integration ✓ Complete
+- **Phase:** 02 — Skeleton Pages & Design Integration ✓ complete → Phase 03 (TBD)
+- **Branch:** `feat/02-skeleton-pages-complete`
 
 ## License
 

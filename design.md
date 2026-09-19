@@ -190,6 +190,7 @@ app/Views/
 │   ├── cta.php
 │   └── breadcrumb.php
 ├── pages/
+│   ├── about.php
 │   ├── home.php
 │   ├── history.php
 │   ├── vision-mission.php
@@ -356,7 +357,7 @@ app/Language/
 ## 7. Anti-Pattern & Larangan
 
 - **Jangan gunakan shadow** — Revolut flat design, depth dari kontras warna
-- **Jangan gunakan bold (700) untuk heading Aeonik Pro** — weight 500 adalah standar
+- **Jangan gunakan bold (700) untuk heading Inter** — weight 500 adalah standar
 - **Jangan gunakan tombol kecil** — padding generous (14px 32px) adalah intentional
 - **Jangan terapkan warna semantic ke marketing surface** — warna semantic untuk produk, bukan landing page
 - **Jangan invent warna baru** — gunakan hanya token dari `:root`
@@ -398,13 +399,14 @@ echo base_url('assets/css/main.css');
 ```php
 // app/Config/Routes.php
 $routes->group('{locale}', ['filter' => 'locale'], function ($routes) {
-    $routes->get('/', 'Home::index');
-    $routes->get('sejarah', 'Home::history');
-    $routes->get('visi-misi', 'Home::visionMission');
-    $routes->get('layanan', 'Home::services');
-    $routes->get('kontak', 'Home::contact');
-    $routes->get('portofolio', 'Home::portfolio');
-    $routes->get('investor', 'Home::investor');
+    $routes->get('/', 'Home::page');
+    $routes->get('tentang', 'Home::page');
+    $routes->get('sejarah', 'Home::page');
+    $routes->get('visi-misi', 'Home::page');
+    $routes->get('layanan', 'Home::page');
+    $routes->get('kontak', 'Home::page');
+    $routes->get('portofolio', 'Home::page');
+    $routes->get('investor', 'Home::page');
 });
 ```
 

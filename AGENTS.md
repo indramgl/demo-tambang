@@ -178,7 +178,7 @@ This project uses **learnship**. Key facts:
 ```
 perusahaan-tambang/
 ├── app/                  # CI4 application (controllers, models, views)
-│   ├── Commands/         # CLI commands (DesignSync, RenderPages)
+│   ├── Commands/         # CI4 commands (DesignSync)
 │   ├── Controllers/      # Controllers (Home.php)
 │   ├── Filters/          # Custom filters (Locale.php)
 │   ├── Views/
