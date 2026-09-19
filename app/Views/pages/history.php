@@ -27,7 +27,7 @@
 <section class="stats">
     <h2><?= esc($locale) === 'id' ? 'Statistik Kunci' : 'Key Statistics' ?></h2>
     <div class="stat">
-        <span class="stat-number"><?= esc($locale) === 'id' ? '2005' : '2005' ?></span>
+        <span class="stat-number">2005</span>
         <span class="stat-label"><?= esc($locale) === 'id' ? 'Tahun Berdiri' : 'Year Founded' ?></span>
     </div>
 </section>

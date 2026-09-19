@@ -41,6 +41,14 @@ final class CssFilesTest extends CIUnitTestCase
         );
     }
 
+    public function testTokensCssExists(): void
+    {
+        $this->assertFileExists(
+            FCPATH . 'assets/css/tokens.css',
+            'tokens.css must exist in public/assets/css/'
+        );
+    }
+
     public function testMainCssImportsTokensCss(): void
     {
         $content = file_get_contents(FCPATH . 'assets/css/main.css');
@@ -106,6 +114,12 @@ final class CssFilesTest extends CIUnitTestCase
         $this->assertStringContainsString('400px', $content, 'responsive.css must have 400px breakpoint');
     }
 
+    public function testTokensCssHasRootBlock(): void
+    {
+        $content = file_get_contents(FCPATH . 'assets/css/tokens.css');
+        $this->assertStringContainsString(':root', $content, 'tokens.css must contain :root block');
+    }
+
     public function testNoHardcodedHexInCssFiles(): void
     {
         $cssFiles = [
@@ -116,20 +130,26 @@ final class CssFilesTest extends CIUnitTestCase
         ];
 
         foreach ($cssFiles as $name => $content) {
-            // Check for hex colors that are NOT inside a :root block
-            // We allow hex in :root but not elsewhere
-            $rootBlock = '';
-            if (preg_match('/:root\s*\{[^}]+\}/s', $content, $m)) {
-                $rootBlock = $m[0];
-            }
-
-            $nonRootContent = str_replace($rootBlock, '', $content);
-
-            // Look for hex colors (#xxx or #xxxxxx) outside :root
+            // Files that import tokens.css should not contain hex colors directly
+            // Only tokens.css is allowed to have hex colors (inside :root)
             $this->assertDoesNotMatchRegularExpression(
                 '/#[0-9a-fA-F]{3,6}\b/',
-                $nonRootContent,
-                "$name must not contain hardcoded hex colors outside :root block"
+                $content,
+                "$name must not contain hardcoded hex colors"
+            );
+        }
+
+        // tokens.css is allowed to have hex colors inside :root
+        $tokensContent = file_get_contents(FCPATH . 'assets/css/tokens.css');
+        $this->assertStringContainsString(':root', $tokensContent);
+        // Verify hex colors are only inside :root block
+        if (preg_match('/:root\s*\{[^}]+\}/s', $tokensContent, $m)) {
+            $rootBlock = $m[0];
+            $nonRoot = str_replace($rootBlock, '', $tokensContent);
+            $this->assertDoesNotMatchRegularExpression(
+                '/#[0-9a-fA-F]{3,6}\b/',
+                $nonRoot,
+                'tokens.css must not contain hex colors outside :root block'
             );
         }
     }

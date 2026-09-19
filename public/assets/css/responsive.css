@@ -10,11 +10,11 @@
     letter-spacing: -0.32px;
   }
 
-  .service-grid {
+  .services-grid {
     grid-template-columns: 1fr 1fr;
   }
 
-  .portfolio-grid {
+  .portfolio-filter {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -22,7 +22,7 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  .contact-layout {
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 
@@ -44,11 +44,11 @@
     letter-spacing: -0.24px;
   }
 
-  .service-grid {
+  .services-grid {
     grid-template-columns: 1fr;
   }
 
-  .portfolio-grid {
+  .portfolio-filter {
     grid-template-columns: 1fr;
   }
 
@@ -56,7 +56,7 @@
     grid-template-columns: 1fr;
   }
 
-  .contact-layout {
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 

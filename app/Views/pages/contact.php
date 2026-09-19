@@ -16,6 +16,7 @@
     <div class="contact-form">
         <h2><?= esc($locale) === 'id' ? 'Kirim Pesan' : 'Send a Message' ?></h2>
         <form>
+    <?= csrf_field() ?>
             <div class="form-group">
                 <label for="name"><?= esc($locale) === 'id' ? 'Nama' : 'Name' ?></label>
                 <input type="text" id="name" name="name">
