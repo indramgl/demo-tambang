@@ -46,6 +46,18 @@ final class DesignSyncTest extends CIUnitTestCase
         $this->assertStringContainsString('--radius-', $content, 'tokens.css must contain --radius- tokens');
         $this->assertStringContainsString('--space-', $content, 'tokens.css must contain --space- tokens');
 
+        // Verify typography tokens are present
+        $this->assertStringContainsString('--font-display-mega-size', $content, 'tokens.css must contain --font-display-mega-size');
+        $this->assertStringContainsString('--font-display-hero-size', $content, 'tokens.css must contain --font-display-hero-size');
+        $this->assertStringContainsString('--font-section-heading-size', $content, 'tokens.css must contain --font-section-heading-size');
+        $this->assertStringContainsString('--font-body-size', $content, 'tokens.css must contain --font-body-size');
+        $this->assertStringContainsString('--font-caption-size', $content, 'tokens.css must contain --font-caption-size');
+
+        // Verify elevation tokens are present
+        $this->assertStringContainsString('--shadow-none', $content, 'tokens.css must contain --shadow-none');
+        $this->assertStringContainsString('--shadow-focus', $content, 'tokens.css must contain --shadow-focus');
+        $this->assertStringContainsString('--shadow-raised', $content, 'tokens.css must contain --shadow-raised');
+
         // Verify the :root block is properly formed
         $this->assertMatchesRegularExpression(
             '/:root\s*\{[^}]+\}/s',
