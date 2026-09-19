@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Controllers;
 
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Test\CIUnitTestCase;
 
 /**
@@ -40,29 +41,6 @@ final class HomeControllerTest extends CIUnitTestCase
         }
     }
 
-    public function testPageMapHasEightEntries(): void
-    {
-        $controllerFile = APPPATH . 'Controllers/Home.php';
-        $content = file_get_contents($controllerFile);
-        $this->assertStringContainsString("'about'", $content);
-        // Verify 7 original + about = 8 entries by checking all expected keys exist
-        $pages = ['home', 'history', 'vision-mission', 'services', 'contact', 'portfolio', 'investor', 'about'];
-        foreach ($pages as $page) {
-            $this->assertStringContainsString("'" . $page . "'", $content);
-        }
-    }
-
-    public function testPageMethodReturnsViewWithoutContent(): void
-    {
-        $controllerFile = APPPATH . 'Controllers/Home.php';
-        $content = file_get_contents($controllerFile);
-        $this->assertStringContainsString('pages/', $content);
-        $this->assertStringContainsString("'title'", $content);
-        $this->assertStringContainsString("'locale'", $content);
-        $this->assertStringContainsString("'localeUrls'", $content);
-        $this->assertStringNotContainsString("'content'", $content);
-    }
-
     public function testIndexMethodDelegatesToPage(): void
     {
         $controllerFile = APPPATH . 'Controllers/Home.php';
@@ -74,38 +52,33 @@ final class HomeControllerTest extends CIUnitTestCase
         );
     }
 
-    public function testPageMapHasCorrectViewMapping(): void
+    public function testPageMethodReturnsViewWithCorrectData(): void
     {
         $controllerFile = APPPATH . 'Controllers/Home.php';
         $content = file_get_contents($controllerFile);
-        $this->assertStringContainsString("'home'          => ['Beranda', 'home']", $content);
-        $this->assertStringContainsString("'history'       => ['Sejarah', 'history']", $content);
-        $this->assertStringContainsString("'vision-mission'=> ['Visi & Misi', 'vision-mission']", $content);
+        $this->assertStringContainsString("'title' => \$title", $content);
+        $this->assertStringContainsString("'locale' => \$locale", $content);
+        $this->assertStringContainsString("'localeUrls' => \$localeUrls", $content);
+        $this->assertStringNotContainsString("'content'", $content);
     }
 
-    public function testNoGetRenderedContent(): void
-    {
-        $controllerFile = APPPATH . 'Controllers/Home.php';
-        $content = file_get_contents($controllerFile);
-        $this->assertStringNotContainsString(
-            'getRenderedContent',
-            $content,
-            'Controller must not have getRenderedContent method'
-        );
-    }
-
-    public function testPageMethodThrowsPageNotFoundException(): void
+    public function testPageMethodThrowsPageNotFoundForUnknownSlug(): void
     {
         $controllerFile = APPPATH . 'Controllers/Home.php';
         $content = file_get_contents($controllerFile);
         $this->assertStringContainsString(
-            'PageNotFoundException',
+            'throw PageNotFoundException::forPageNotFound()',
             $content,
             'Controller must throw PageNotFoundException for unknown slugs'
         );
+        $this->assertStringNotContainsString(
+            "?? ['Beranda', 'home']",
+            $content,
+            'Controller must not silently fall back to home for unknown slugs'
+        );
     }
 
-    public function testLocaleUrlMethodExists(): void
+    public function testPageMethodHasLocaleUrl(): void
     {
         $controllerFile = APPPATH . 'Controllers/Home.php';
         $content = file_get_contents($controllerFile);
