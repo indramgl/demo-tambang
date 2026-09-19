@@ -65,7 +65,7 @@ Aggregated learnings from 1 decision, 3 debug sessions, 1 retrospective, 5 resea
 - **Decoupled Local/Production Architecture:** Use `php spark serve` for local dev and OpenLitespeed + PHP-FPM on VPS. Different web servers for each environment avoid Windows/Unix friction and simplify local setup.
 - **Git-Based Deployment Pipeline:** Push to GitHub, pull on VPS. Simplest deployment model for static sites — no CI/CD pipeline needed.
 - **Standard CI4 .env Pattern:** `.env.example` committed, `.env` gitignored, VPS has its own `.env`. Prevents configuration drift and secret leaks.
-- **Markdown Content in CI4 Views:** Static content written as markdown files in `app/Views/pages/{halaman}/{bahasa}.md`, rendered through CI4 view templates. Eliminates CMS/database complexity.
+- **Markdown Content in CI4 Views** — *superseded* — Static markdown content was initially planned, but Phase 02 switched to flat PHP views (`app/Views/pages/*.php`) with CI4 view rendering. Markdown files are kept as reference only.
 - **`.gitignore` First:** Always create `.gitignore` before any other file. Prevents accidental commits of `.env`, `vendor/`, `writable/`, and IDE configs.
 
 ---
@@ -91,7 +91,7 @@ Aggregated learnings from 1 decision, 3 debug sessions, 1 retrospective, 5 resea
 | SQLite | Optional database | Only needed for contact form (Phase 4) |
 | Postmark (`wildbit/postmark-php`) | Email for contact form | Phase 4 only, not needed for v1.0 |
 | Let's Encrypt | SSL certificates | Domain: `tambang.indramgl.web.id` |
-| Parsedown/CommonMark | Markdown → HTML rendering | For multilingual markdown content in CI4 views |
+
 
 ---
 
@@ -109,4 +109,4 @@ Aggregated learnings from 1 decision, 3 debug sessions, 1 retrospective, 5 resea
 
 ---
 
-*Last updated: 2026-09-08*
+*Last updated: 2026-09-19*
