@@ -2,10 +2,12 @@
 
 ## Current Position
 
-Phase: 1 — Skeleton Pages & Design Integration ✓ Complete
+Phase: 1 — Skeleton Pages & Design Integration ✓ Complete (Context updated 2026-09-19)
 Plan: ROADMAP.md — 1 phase, 3 requirements
-Status: phase complete — ready for verify-work
+Status: phase complete — deep discussion completed, CONTEXT.md updated
+Last activity: 2026-09-19 — Phase 1 deep discussion completed. All decision branches walked in deep mode. 11 decisions captured.
 Last activity: 2026-09-09 — Phase 1 execution complete. All 3 plans across 3 waves executed and verified (18/18 must-haves passed).
+Last activity: 2026-09-08 — Phase 1 CONTEXT.md and DISCUSSION-LOG.md gathered in standard mode.
 
 ## Last Milestone
 
@@ -28,7 +30,8 @@ Key achievements: CI4 project scaffolded and deployable to staging VPS. All code
 - v1.0 shipped with 6/7 requirements met; REQ-004 blocked on external VPS provisioning
 - v2.0 scope: skeleton pages + design integration (REQ-008 through REQ-010)
 - v2.0 anti-goals: No CMS, no database, no design iteration after skeleton, no content writing, no VPS deployment
-- v2.0 Phase 1 decisions: Custom locale filter, route-level redirect for root URL, pre-render markdown during deploy, auto-generate tokens.css from design.md
+- v2.0 Phase 1 decisions (deep mode 2026-09-19): CI4 view rendering (replaces pre-render), flat .php views canonical, markdown as reference, layout bug fix (renderSection), controller localeUrl() for navbar, DesignSync extended with typography + elevation tokens, about page with `tentang` slug, PageNotFound validation, CI4 page cache + OpenLitespeed two-layer caching
+- v2.0 Phase 1 decisions (standard mode 2026-09-08): Custom locale filter, route-level redirect for root URL, auto-generate tokens.css from design.md
 
 ### Blockers
 - design.md from OpenDesign — already in repo, may receive updates before v3
