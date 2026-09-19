@@ -37,6 +37,8 @@ class Home extends BaseController
             $localeUrls[$loc] = $this->localeUrl($loc);
         }
 
+        $this->cachePage(3600);
+
         return view("pages/{$view}", [
             'title' => $title,
             'locale' => $locale,

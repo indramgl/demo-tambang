@@ -143,6 +143,17 @@ final class HomeControllerTest extends CIUnitTestCase
         );
     }
 
+    public function testPageUsesCachePage3600(): void
+    {
+        $controllerFile = APPPATH . 'Controllers/Home.php';
+        $content = file_get_contents($controllerFile);
+        $this->assertStringContainsString(
+            '$this->cachePage(3600)',
+            $content,
+            'Home::page() must call $this->cachePage(3600) for CI4 page caching'
+        );
+    }
+
     public function testNavbarUsesLocaleUrlsArray(): void
     {
         $navbarFile = APPPATH . 'Views/layouts/navbar.php';
