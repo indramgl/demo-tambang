@@ -1,36 +1,37 @@
 # Plan 02-02 Summary
 
-**Completed:** 2026-09-09
+**Completed:** 2026-09-19
+**Phase:** 02 — Skeleton Pages & Design Integration
 
 ## What was built
 
-7 skeleton page templates with consistent layout, controller methods for all pages, and a pre-render deploy command. All pages are accessible in all 6 locales via URL path routing.
+Extended the design token system so `tokens.css` contains full typography (12 roles × 4 properties = 48 tokens) and elevation (3 tokens) data from design.md. Migrated `pages.css` from hardcoded typography values to `var(--*)` references. Verified language switcher end-to-end. All 79 unit tests passing.
 
 ## Key files
 
-- `app/Views/layouts/main.php`: Primary layout with HTML5 doctype, esc($locale) for html lang, title with site name, stylesheet link, navbar include, content section, footer include
-- `app/Views/layouts/navbar.php`: Navigation with site brand and language switcher (6 locale links preserving current page path)
-- `app/Views/layouts/footer.php`: Footer with copyright text
-- `app/Views/pages/home.php`: Home page with hero, about, services grid, CTA sections
-- `app/Views/pages/history.php`: History page with breadcrumb, hero, timeline, stats
-- `app/Views/pages/vision-mission.php`: Vision-mission page with breadcrumb, hero, vision card, mission list, core values grid
-- `app/Views/pages/services.php`: Services page with breadcrumb, hero, services grid, CTA
-- `app/Views/pages/contact.php`: Contact page with breadcrumb, hero, two-column form + info/map layout
-- `app/Views/pages/portfolio.php`: Portfolio page with breadcrumb, hero, filter tabs, gallery grid, CTA
-- `app/Views/pages/investor.php`: Investor page with breadcrumb, hero, document table, CTA
-- `app/Controllers/Home.php`: 7 methods (index, history, visionMission, services, contact, portfolio, investor) each reading pre-rendered HTML and passing to view
-- `app/Config/Routes.php`: 7 page routes inside locale group (sejarah, visi-misi, layanan, kontak, portofolio, investor)
-- `app/Commands/RenderPages.php`: CLI command (`php spark render:pages`) that scans page directories, reads .md files, converts with Parsedown, writes to public/content/{page}/{locale}.html
+- **app/Commands/DesignSync.php**: Added `extractTypographyTokens()` and `extractElevationTokens()` methods; `extractRootBlock()` now merges all three property types (colors/spaces/radii + typography + elevation)
+- **public/assets/css/tokens.css**: Regenerated with all 48 typography tokens and 3 elevation tokens, plus all original color/space/radius tokens
+- **public/assets/css/pages.css**: All hardcoded `font-size`, `font-weight`, `line-height`, `letter-spacing` values replaced with `var(--font-*)` references
+- **tests/unit/Commands/DesignSyncTest.php**: Added assertions for typography tokens (`--font-display-mega-size`, etc.) and elevation tokens (`--shadow-none`, etc.)
+- **tests/unit/Controllers/HomeControllerTest.php**: Added `testLocaleUrlUsesUriSetSegment`, `testLocaleUrlDoesNotUseLtrimPath`, `testNavbarUsesLocaleUrlsArray`, `testMainHreflangUsesLocaleUrls`
 
 ## Decisions made
 
-- Layout uses `$this->extend('layouts/main')` and `$this->section('content')` for all page views
-- Controller methods read pre-rendered HTML from public/content/ instead of converting markdown at runtime
-- Pre-render command uses Parsedown for markdown-to-HTML conversion
-- All view files use esc() for output escaping — no hardcoded locale strings
+- "Caption / Meta" role maps to `caption` prefix (not `caption-meta`) for CSS custom property names
+- Elevation values have backticks stripped during extraction
+- `pages.css` font properties mapped to design tokens even when values don't exactly match (tokens are source of truth)
+- Language switcher uses `foreach ($localeUrls as $lang => $url)` pattern in both navbar.php and main.php
+- `localeUrl()` uses `service('uri')` with `setSegment(1, $locale)` — no `ltrim(service('uri')->getPath())` pattern
+
+## Deviations from plan
+
+- None significant. All 5 tasks executed as specified.
+- The `testDesignSyncGeneratesTokensCss` was updated to include typography and elevation assertions alongside existing color/space/radius assertions.
 
 ## Notes for downstream
 
-- All 7 pages render in all 6 locales (42 URL combinations accessible)
-- The pre-render command must be run before deploying to generate HTML files
-- Design tokens from Wave 2 are applied via main.css
+- All 5 tasks in plan 02-02 complete; 79/79 tests passing
+- `npm test` should pass (after Plan 03 test updates)
+- tokens.css is the single source of truth for design tokens — changes to design.md require `php spark design:sync`
+- pages.css typography is fully migrated to var() references — no hardcoded font values remain
+- Language switcher verified end-to-end with correct locale URL generation
